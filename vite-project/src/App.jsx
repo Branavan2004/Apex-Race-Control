@@ -1,49 +1,52 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
-  const [drivers, setDrivers] = useState([]);
+  const [standings, setStandings] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://ergast.com/api/f1/current/driverStandings.json")
-      .then((res) => res.json())
+    // Fetching the 2026 (or current) standings from Ergast
+    fetch('https://ergast.com/api/f1/current/driverStandings.json')
+      .then((response) => response.json())
       .then((data) => {
-        const standings =
-          data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-        setDrivers(standings);
+        const list = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+        setStandings(list);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((error) => {
+        console.error("Error fetching F1 data:", error);
+        setLoading(false);
+      });
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>F1 Driver Standings</h1>
-
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>Pos</th>
-            <th>Driver</th>
-            <th>Points</th>
-            <th>Team</th>
-          </tr>
-        </thead>
-        <tbody>
-          {drivers.map((d) => (
-            <tr key={d.position}>
-              <td>{d.position}</td>
-              <td>
-                {d.Driver.givenName} {d.Driver.familyName}
-              </td>
-              <td>{d.points}</td>
-              <td>{d.Constructors[0].name}</td>
+    <div className="f1-container">
+      <h1>🏎️ F1 Driver Standings</h1>
+      {loading ? (
+        <p>Loading the grid...</p>
+      ) : (
+        <table className="standings-table">
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th>Driver</th>
+              <th>Constructor</th>
+              <th>Points</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {standings.map((item) => (
+              <tr key={item.Driver.driverId}>
+                <td>{item.position}</td>
+                <td>{item.Driver.givenName} {item.Driver.familyName}</td>
+                <td>{item.Constructors[0].name}</td>
+                <td className="points">{item.points}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
