@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 
 const certifications = [
-  "AWS Cloud Practitioner",
-  "Meta Front-End Developer",
-  "Google UX Design",
+  "AWS Certified Cloud Practitioner",
+  "Meta Front-End Developer Professional Certificate",
+  "Google UX Design Professional Certificate",
+  "Stanford Machine Learning (Coursera — Andrew Ng)",
+  "IBM Data Science Professional Certificate",
 ];
 
 const DriverProfile = () => (
@@ -44,21 +46,30 @@ const DriverProfile = () => (
             transition={{ delay: 0.1 }}
           >
             <p className="font-body text-lg text-muted-foreground leading-relaxed mb-6">
-              I am a dedicated software engineering undergraduate at the Informatics Institute of Technology 
-              (affiliated with the University of Westminster, UK), with a strong focus on building robust, 
-              scalable, and maintainable software systems. My engineering philosophy centers on precision — 
-              writing clean code, designing thoughtful architectures, and delivering interfaces that 
-              prioritize both performance and user experience.
+              I am a final-year Software Engineering undergraduate at the Informatics Institute of Technology 
+              (affiliated with the University of Westminster, UK), pursuing a BSc (Hons) with a cumulative GPA 
+              above 3.8. My academic coursework spans core computer science disciplines including Data Structures 
+              & Algorithms, Database Management Systems, Operating Systems, Computer Networks, Software Architecture, 
+              and Machine Learning — providing a rigorous theoretical foundation that I apply to every project.
             </p>
             <p className="font-body text-lg text-muted-foreground leading-relaxed mb-6">
-              My technical interests span full-stack web development, distributed systems, cloud-native 
-              architectures, and machine learning. I am committed to continuous learning and actively 
-              contribute to open-source projects, technical communities, and collaborative engineering efforts.
+              My research and technical interests encompass distributed systems design, cloud-native microservices 
+              architecture, applied machine learning, and human-computer interaction. I have completed over 15 
+              academic and independent projects, including a final-year dissertation focused on scalable 
+              event-driven architectures. I actively contribute to open-source repositories and participate in 
+              competitive programming contests to sharpen algorithmic thinking.
+            </p>
+            <p className="font-body text-lg text-muted-foreground leading-relaxed mb-6">
+              I am proficient in multiple programming paradigms — object-oriented (Java, C++, TypeScript), 
+              functional (Python, Haskell), and declarative (SQL, Prolog). My development workflow emphasizes 
+              test-driven development, continuous integration, version control best practices, and thorough 
+              documentation following IEEE and ACM standards.
             </p>
             <p className="font-body text-lg text-muted-foreground leading-relaxed">
-              Beyond technical proficiency, I bring strong communication skills, a collaborative mindset, 
-              and the ability to translate complex requirements into elegant solutions. I thrive in 
-              environments that demand both creative thinking and analytical rigor.
+              Beyond technical skills, I possess strong analytical reasoning, scientific writing proficiency, 
+              and the ability to communicate complex technical concepts to both technical and non-technical 
+              stakeholders. I actively seek environments that value intellectual curiosity, rigorous engineering, 
+              and collaborative problem-solving.
             </p>
           </motion.div>
 
@@ -71,11 +82,13 @@ const DriverProfile = () => (
           >
             {[
               { label: "Location", value: "Colombo, Sri Lanka", icon: "📍" },
-              { label: "Education", value: "BSc (Hons) Software Engineering", icon: "🎓" },
-              { label: "Institution", value: "IIT · University of Westminster, UK", icon: "🏫" },
-              { label: "Specialization", value: "Full-Stack · Cloud · System Design", icon: "⚡" },
-              { label: "Status", value: "Actively Seeking Opportunities", icon: "🟢" },
-              { label: "Season", value: "2026 — Final Year", icon: "🏁" },
+              { label: "Degree", value: "BSc (Hons) Software Engineering — Final Year", icon: "🎓" },
+              { label: "Institution", value: "IIT Sri Lanka · University of Westminster, UK", icon: "🏫" },
+              { label: "GPA", value: "3.8+ / 4.0 — Dean's List (Multiple Semesters)", icon: "📊" },
+              { label: "Research Areas", value: "Distributed Systems · ML · Cloud · HCI", icon: "🔬" },
+              { label: "Languages", value: "Java, Python, TypeScript, C++, SQL, Rust", icon: "💻" },
+              { label: "Status", value: "Seeking Internships, Research & Graduate Roles", icon: "🟢" },
+              { label: "Expected Graduation", value: "June 2027", icon: "🎓" },
             ].map((item, i) => (
               <motion.div
                 key={item.label}

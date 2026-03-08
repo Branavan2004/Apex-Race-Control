@@ -67,14 +67,16 @@ const FinishLine = () => {
 
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 1 }}>
         <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight mb-4">
-          Thank You for Visiting
+          Thank You for Your Time
         </h2>
         <p className="font-body text-lg text-muted-foreground mb-2 max-w-xl mx-auto">
-          I appreciate you taking the time to explore my portfolio. If my work and experience 
-          align with your needs, I would be delighted to discuss potential collaborations.
+          I sincerely appreciate you reviewing my academic portfolio. If my research interests, technical 
+          competencies, and project experience align with your requirements, I would welcome the opportunity 
+          to discuss potential collaborations, positions, or research partnerships.
         </p>
         <p className="font-body text-base text-muted-foreground/60 mb-6 max-w-md mx-auto">
-          Every project is an opportunity to deliver excellence. Let's build something remarkable together.
+          I am committed to continuous learning, rigorous engineering, and meaningful contribution 
+          to the field of computer science. I look forward to connecting with you.
         </p>
 
         {/* Session time */}
@@ -86,7 +88,8 @@ const FinishLine = () => {
 
         <div className="mt-2">
           <p className="font-display text-sm font-semibold text-primary">Branavan</p>
-          <p className="font-mono text-xs text-muted-foreground/50 mt-1">Software Engineer · Full-Stack Developer · Problem Solver</p>
+          <p className="font-mono text-xs text-muted-foreground/50 mt-1">BSc (Hons) Software Engineering · IIT / University of Westminster</p>
+          <p className="font-mono text-[9px] text-muted-foreground/30 mt-0.5">Distributed Systems · Machine Learning · Cloud-Native Architecture · Full-Stack Development</p>
         </div>
       </motion.div>
 

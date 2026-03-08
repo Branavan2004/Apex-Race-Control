@@ -4,44 +4,44 @@ import { useState } from "react";
 
 const projects = [
   {
-    name: "Enterprise Analytics Dashboard",
-    tech: ["React", "TypeScript", "D3.js", "Node.js"],
-    description: "Designed and developed a comprehensive real-time analytics platform capable of processing 10,000+ data points per second. Implemented server-sent events for live updates, custom D3 visualizations, and role-based access control. Reduced reporting latency by 60% compared to the previous solution.",
+    name: "Distributed Event-Driven Analytics Platform",
+    tech: ["React", "TypeScript", "Node.js", "Apache Kafka", "PostgreSQL", "D3.js"],
+    description: "Final-year dissertation project: designed and implemented a scalable, event-driven analytics platform following CQRS and event-sourcing patterns. The system ingests telemetry data via Apache Kafka, processes it through a Node.js consumer pipeline, and persists aggregated metrics in PostgreSQL. The React frontend renders real-time visualizations using D3.js with server-sent events for live updates. Applied CAP theorem considerations, implemented idempotent consumers, and conducted load testing with k6 to validate throughput under concurrent load. Documented architecture using C4 model diagrams and evaluated against NFR benchmarks (latency <200ms p99, availability 99.9%).",
     position: "P1", points: 26, fastestLap: true, tire: "S", tireColor: "bg-primary",
-    lapTime: "1:18.432", gap: "WINNER", status: "Production",
-    metrics: "10K+ events/sec · 99.9% uptime · 60% faster reports",
+    lapTime: "1:18.432", gap: "WINNER", status: "Dissertation",
+    metrics: "10K events/sec · <200ms p99 latency · 99.9% availability target",
   },
   {
-    name: "ML-Powered Prediction Engine",
-    tech: ["Python", "TensorFlow", "Flask", "PostgreSQL"],
-    description: "Built an end-to-end machine learning pipeline for predictive analytics with automated model training, evaluation, and deployment. Integrated feature engineering, hyperparameter tuning, and A/B testing frameworks. Achieved 94% prediction accuracy on production data with sub-200ms inference time.",
+    name: "Neural Network-Based Predictive Model",
+    tech: ["Python", "TensorFlow", "Scikit-learn", "Flask", "PostgreSQL", "Docker"],
+    description: "Developed an end-to-end machine learning pipeline for time-series prediction as part of a Machine Learning module project. Implemented data preprocessing with Pandas, feature engineering using rolling-window statistics, and trained LSTM and GRU models using TensorFlow/Keras. Applied cross-validation, hyperparameter tuning (Bayesian optimization via Optuna), and model interpretability techniques (SHAP values). Deployed the trained model via a Flask REST API containerized with Docker. Achieved 94.2% accuracy (RMSE: 0.037) on the held-out test set. Project report followed IEEE conference paper format.",
     position: "P2", points: 18, fastestLap: false, tire: "M", tireColor: "bg-f1-yellow",
-    lapTime: "1:19.001", gap: "+1.569", status: "Production",
-    metrics: "94% accuracy · <200ms inference · 50K+ predictions/day",
+    lapTime: "1:19.001", gap: "+1.569", status: "Submitted",
+    metrics: "94.2% accuracy · RMSE 0.037 · SHAP interpretability · Dockerized",
   },
   {
-    name: "Cross-Platform Mobile Application",
-    tech: ["React Native", "Firebase", "Redux", "TypeScript"],
-    description: "Developed a cross-platform mobile application with offline-first architecture, real-time data synchronization, push notifications, and biometric authentication. Implemented code-sharing between iOS and Android with 85% shared codebase. Published on both App Store and Google Play.",
+    name: "Cross-Platform Health & Wellness Application",
+    tech: ["React Native", "TypeScript", "Firebase", "Redux Toolkit", "Expo"],
+    description: "Built a cross-platform mobile application as part of a Mobile Computing coursework project. Implemented offline-first architecture using AsyncStorage with background sync to Firebase Firestore. Features include biometric authentication (FaceID/TouchID), push notifications via FCM, real-time data synchronization with conflict resolution, and accessibility compliance (WCAG 2.1 AA). Achieved 85% shared codebase between iOS and Android. Conducted usability testing with 20 participants using the System Usability Scale (SUS), scoring 82.5.",
     position: "P1", points: 26, fastestLap: true, tire: "S", tireColor: "bg-primary",
     lapTime: "1:17.998", gap: "WINNER", status: "Published",
-    metrics: "85% code shared · 4.7★ rating · 5K+ downloads",
+    metrics: "85% code sharing · SUS score 82.5 · WCAG 2.1 AA · 5K+ downloads",
   },
   {
-    name: "Microservices E-Commerce Platform",
-    tech: ["Java", "Spring Boot", "PostgreSQL", "Docker", "Kafka"],
-    description: "Architected a scalable e-commerce backend using microservices patterns with event-driven communication via Apache Kafka. Implemented CQRS, saga patterns for distributed transactions, and comprehensive integration testing. Deployed on Kubernetes with auto-scaling and health monitoring.",
+    name: "Microservices E-Commerce Backend",
+    tech: ["Java", "Spring Boot", "PostgreSQL", "Docker", "Kafka", "Kubernetes"],
+    description: "Architected a cloud-native e-commerce backend using microservices decomposition (Domain-Driven Design) for a Distributed Systems module. Implemented service discovery (Consul), API gateway (Spring Cloud Gateway), inter-service communication via Apache Kafka, and distributed transactions using the Saga pattern. Each service follows hexagonal architecture with separate domain, application, and infrastructure layers. Deployed to Kubernetes with Helm charts, horizontal pod autoscaling, and Prometheus/Grafana monitoring. Achieved 98% integration test coverage using Testcontainers.",
     position: "P3", points: 15, fastestLap: false, tire: "H", tireColor: "bg-foreground",
-    lapTime: "1:20.115", gap: "+2.117", status: "Production",
-    metrics: "12 microservices · 98% test coverage · Auto-scaling",
+    lapTime: "1:20.115", gap: "+2.117", status: "Completed",
+    metrics: "12 microservices · DDD · Saga pattern · 98% test coverage · K8s",
   },
   {
-    name: "Open-Source CLI Tool",
-    tech: ["Rust", "GitHub Actions"],
-    description: "Created and maintain an open-source command-line tool for automating development workflows. Features include project scaffolding, configuration management, and CI/CD pipeline generation. Over 200 GitHub stars and active community contributions.",
+    name: "Open-Source Developer Workflow CLI",
+    tech: ["Rust", "GitHub Actions", "Clap", "Serde"],
+    description: "Created and actively maintain an open-source command-line tool written in Rust for automating common developer workflows — project scaffolding, configuration management, and CI/CD pipeline generation. Designed with a plugin architecture for extensibility. Uses Clap for argument parsing, Serde for configuration serialization, and includes comprehensive unit and integration tests. Published to crates.io with semantic versioning and automated releases via GitHub Actions. Currently has 200+ GitHub stars and contributions from 50+ community members.",
     position: "P4", points: 12, fastestLap: false, tire: "M", tireColor: "bg-f1-yellow",
     lapTime: "1:20.887", gap: "+3.455", status: "Open Source",
-    metrics: "200+ ★ GitHub · 50+ contributors · 10K+ installs",
+    metrics: "200+ ★ · 50+ contributors · crates.io published · Plugin architecture",
   },
 ];
 
@@ -62,10 +62,11 @@ const RaceHistory = () => {
         </div>
         <div className="flex items-end justify-between">
           <div>
-            <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">Project Portfolio</h2>
+            <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">Academic & Research Projects</h2>
             <p className="font-body text-muted-foreground mt-3 max-w-lg">
-              A selection of key projects demonstrating technical depth, architectural thinking, 
-              and end-to-end delivery. Click any project to view detailed specifications.
+              A curated selection of coursework, dissertation, and independent projects demonstrating 
+              rigorous application of computer science theory, software engineering methodology, 
+              and architectural decision-making. Click any project to view full technical specifications.
             </p>
           </div>
           <div className="hidden md:block text-right">

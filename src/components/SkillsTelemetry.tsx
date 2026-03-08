@@ -3,30 +3,42 @@ import { useEffect, useRef, useState } from "react";
 
 const skillCategories = [
   {
-    category: "Frontend Engineering",
+    category: "Programming Languages & Paradigms",
     skills: [
-      { name: "React / Next.js", value: 95, color: "hsl(var(--f1-blue))", detail: "Production apps, SSR, state management" },
-      { name: "TypeScript", value: 93, color: "hsl(var(--f1-blue))", detail: "Strict typing, generics, advanced patterns" },
-      { name: "Tailwind CSS / SCSS", value: 90, color: "hsl(var(--f1-cyan))", detail: "Design systems, responsive layouts" },
-      { name: "Framer Motion", value: 85, color: "hsl(var(--f1-cyan))", detail: "Complex animations, gesture handling" },
+      { name: "Java (OOP, Concurrency)", value: 94, color: "hsl(var(--f1-blue))", detail: "Advanced OOP, multithreading, JVM internals, design patterns (GoF)" },
+      { name: "Python (ML, Scripting)", value: 92, color: "hsl(var(--f1-blue))", detail: "NumPy, Pandas, Scikit-learn, TensorFlow, Flask, data pipelines" },
+      { name: "TypeScript / JavaScript", value: 93, color: "hsl(var(--f1-cyan))", detail: "Strict typing, generics, async/await, V8 event loop, React ecosystem" },
+      { name: "C++ / C (Systems)", value: 80, color: "hsl(var(--f1-cyan))", detail: "Memory management, pointers, STL, OS-level programming" },
+      { name: "SQL & Database Query", value: 90, color: "hsl(var(--f1-blue))", detail: "Complex joins, indexing, query optimization, normalization (3NF/BCNF)" },
     ],
   },
   {
-    category: "Backend & Infrastructure",
+    category: "Frameworks, Libraries & Web Technologies",
     skills: [
-      { name: "Node.js / Express", value: 90, color: "hsl(var(--f1-green))", detail: "REST APIs, middleware, authentication" },
-      { name: "Python / Django", value: 85, color: "hsl(var(--f1-green))", detail: "Data processing, ML pipelines, scripting" },
-      { name: "PostgreSQL / MongoDB", value: 88, color: "hsl(var(--f1-gold))", detail: "Schema design, queries, optimization" },
-      { name: "Docker / CI-CD", value: 80, color: "hsl(var(--f1-gold))", detail: "Containerization, GitHub Actions, pipelines" },
+      { name: "React / Next.js", value: 95, color: "hsl(var(--f1-green))", detail: "SSR, ISR, state management (Redux, Zustand), React Query, hooks" },
+      { name: "Node.js / Express.js", value: 90, color: "hsl(var(--f1-green))", detail: "REST & GraphQL APIs, middleware, JWT auth, WebSocket, rate limiting" },
+      { name: "Spring Boot (Java)", value: 85, color: "hsl(var(--f1-gold))", detail: "Dependency injection, JPA/Hibernate, Spring Security, microservices" },
+      { name: "Django / Flask (Python)", value: 85, color: "hsl(var(--f1-gold))", detail: "ORM, REST framework, template engine, admin interface, migrations" },
+      { name: "Tailwind CSS / SCSS", value: 90, color: "hsl(var(--f1-green))", detail: "Responsive design systems, utility-first CSS, theming, accessibility" },
     ],
   },
   {
-    category: "Architecture & Core",
+    category: "Computer Science Fundamentals",
     skills: [
-      { name: "System Design", value: 92, color: "hsl(var(--f1-purple))", detail: "Microservices, event-driven, scalability" },
-      { name: "Data Structures & Algorithms", value: 90, color: "hsl(var(--f1-purple))", detail: "Competitive programming, optimization" },
-      { name: "Cloud Services (AWS/GCP)", value: 82, color: "hsl(var(--f1-red))", detail: "EC2, S3, Lambda, Cloud Functions" },
-      { name: "Testing & QA", value: 85, color: "hsl(var(--f1-red))", detail: "Jest, Cypress, integration & unit testing" },
+      { name: "Data Structures & Algorithms", value: 93, color: "hsl(var(--f1-purple))", detail: "Trees, graphs, DP, greedy, divide-and-conquer, time/space complexity" },
+      { name: "System Design & Architecture", value: 88, color: "hsl(var(--f1-purple))", detail: "Microservices, CQRS, event sourcing, CAP theorem, load balancing" },
+      { name: "Database Systems (RDBMS/NoSQL)", value: 90, color: "hsl(var(--f1-red))", detail: "PostgreSQL, MongoDB, Redis, ACID, transactions, sharding, replication" },
+      { name: "Operating Systems & Networks", value: 82, color: "hsl(var(--f1-red))", detail: "Process scheduling, TCP/IP, HTTP/2, DNS, concurrency, deadlock handling" },
+      { name: "Software Engineering Principles", value: 90, color: "hsl(var(--f1-purple))", detail: "SOLID, DRY, TDD, CI/CD, Agile/Scrum, UML, requirement engineering" },
+    ],
+  },
+  {
+    category: "DevOps, Cloud & Tooling",
+    skills: [
+      { name: "Docker & Kubernetes", value: 82, color: "hsl(var(--f1-gold))", detail: "Containerization, orchestration, Helm, service mesh, health probes" },
+      { name: "AWS / GCP Cloud Services", value: 80, color: "hsl(var(--f1-gold))", detail: "EC2, S3, Lambda, RDS, CloudFront, IAM, GCP Cloud Functions" },
+      { name: "Git & CI/CD Pipelines", value: 92, color: "hsl(var(--f1-green))", detail: "GitHub Actions, GitLab CI, branching strategies, code review workflows" },
+      { name: "Testing (Unit/Integration/E2E)", value: 87, color: "hsl(var(--f1-green))", detail: "Jest, JUnit, Cypress, Pytest, coverage analysis, mutation testing" },
     ],
   },
 ];
@@ -90,11 +102,12 @@ const SkillsTelemetry = () => (
         <span className="font-mono text-[10px] tracking-[0.4em] text-secondary/70 uppercase">Sector 02</span>
       </div>
       <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">
-        Technical Proficiency
+        Technical Competencies
       </h2>
       <p className="font-body text-muted-foreground mt-3 max-w-2xl">
-        A comprehensive overview of my technical skill set, categorized by domain. 
-        Proficiency levels are based on project experience, depth of knowledge, and production usage.
+        A structured breakdown of technical skills acquired through academic coursework, independent study, 
+        research projects, and industry-standard certifications. Proficiency levels reflect depth of theoretical 
+        understanding, practical application in projects, and production-grade usage.
       </p>
     </motion.div>
 

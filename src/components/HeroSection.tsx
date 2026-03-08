@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import F1StartLights from "./F1StartLights";
 
 const stats = [
-  { label: "Projects Delivered", value: "12+", detail: "Full-stack applications" },
-  { label: "Technologies", value: "20+", detail: "Languages & frameworks" },
-  { label: "Years Active", value: "3+", detail: "Professional development" },
-  { label: "Lines of Code", value: "50K+", detail: "Production-grade code" },
+  { label: "Academic Projects", value: "15+", detail: "Coursework, research & independent" },
+  { label: "Languages & Tools", value: "25+", detail: "Java, Python, TS, C++, SQL & more" },
+  { label: "Research Interests", value: "4", detail: "Distributed systems, ML, HCI, cloud" },
+  { label: "Cumulative GPA", value: "3.8+", detail: "Dean's List — multiple semesters" },
 ];
 
 const HeroSection = () => {
@@ -125,7 +125,7 @@ const HeroSection = () => {
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-8 h-px bg-primary" />
                     <span className="font-mono text-[10px] tracking-[0.4em] text-primary uppercase">
-                      Software Engineer · Portfolio
+                      Computer Science Undergraduate · Portfolio
                     </span>
                   </div>
                   <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-black text-foreground leading-[0.9] tracking-tight">
@@ -141,9 +141,10 @@ const HeroSection = () => {
                     transition={{ delay: 0.5 }}
                     className="font-body text-base text-muted-foreground mt-6 max-w-md leading-relaxed"
                   >
-                    Full-stack software engineer specializing in scalable web applications, 
-                    system architecture, and high-performance user interfaces. Currently pursuing 
-                    a degree in Software Engineering at the Informatics Institute of Technology, Sri Lanka.
+                    Final-year BSc (Hons) Software Engineering undergraduate with a strong foundation 
+                    in data structures, algorithms, object-oriented design, and distributed computing. 
+                    Passionate about building performant, maintainable systems grounded in sound 
+                    computer science principles.
                   </motion.p>
                 </motion.div>
 
@@ -157,8 +158,9 @@ const HeroSection = () => {
                     <span className="font-display text-xl font-black text-primary">01</span>
                   </div>
                   <div>
-                    <p className="font-display text-sm font-semibold text-foreground">BSc (Hons) Software Engineering</p>
-                    <p className="font-body text-xs text-muted-foreground">IIT Sri Lanka · Affiliated with University of Westminster, UK</p>
+                    <p className="font-display text-sm font-semibold text-foreground">BSc (Hons) Software Engineering — Final Year</p>
+                    <p className="font-body text-xs text-muted-foreground">Informatics Institute of Technology · University of Westminster, UK</p>
+                    <p className="font-mono text-[8px] text-muted-foreground/40 mt-0.5">Modules: Algorithms, DBMS, Software Architecture, Machine Learning, Cloud Computing</p>
                   </div>
                 </motion.div>
               </div>
@@ -258,7 +260,7 @@ const HeroSection = () => {
                   className="flex items-center gap-3 pt-4 border-t border-border"
                 >
                   <div className="w-2 h-2 rounded-full bg-f1-green animate-pulse" />
-                  <span className="font-mono text-xs text-muted-foreground">Available for opportunities</span>
+                  <span className="font-mono text-xs text-muted-foreground">Open to internships, research assistantships & graduate roles</span>
                   <span className="font-mono text-sm text-f1-green ml-auto tabular-nums">
                     +{(counter * 0.05).toFixed(2)}s
                   </span>

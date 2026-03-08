@@ -3,9 +3,9 @@ import { Mail, Linkedin, Github, ArrowUpRight, FileText } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 const channels = [
-  { label: "Email", icon: Mail, href: "mailto:branavan@example.com", desc: "Direct professional inquiries", freq: "107.3", detail: "Response within 24 hours" },
-  { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com", desc: "Professional network & endorsements", freq: "142.8", detail: "500+ connections" },
-  { label: "GitHub", icon: Github, href: "https://github.com", desc: "Open-source contributions & repositories", freq: "98.7", detail: "50+ repositories" },
+  { label: "Email", icon: Mail, href: "mailto:branavan@example.com", desc: "Academic & professional inquiries", freq: "107.3", detail: "Response within 24 hours · Preferred for formal communication" },
+  { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com", desc: "Professional network & academic connections", freq: "142.8", detail: "500+ connections · Endorsements & recommendations available" },
+  { label: "GitHub", icon: Github, href: "https://github.com", desc: "Source code, research implementations & OSS contributions", freq: "98.7", detail: "50+ repositories · Contribution graph & project documentation" },
 ];
 
 const RadioWave = () => {
@@ -51,9 +51,10 @@ const ContactRadio = () => {
         </div>
         <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">Get in Touch</h2>
         <p className="font-body text-muted-foreground mt-3 max-w-2xl">
-          I am currently open to full-time positions, freelance engagements, and collaborative opportunities 
-          in software engineering. Whether you have a project in mind, a technical challenge to discuss, 
-          or simply want to connect — I'd be glad to hear from you.
+          I am actively seeking internship opportunities, research assistantships, and graduate-level positions 
+          in software engineering, distributed systems, and applied machine learning. I welcome inquiries from 
+          academic supervisors, industry recruiters, and fellow developers. Whether you wish to discuss a 
+          research collaboration, a technical project, or career opportunities — I would be pleased to connect.
         </p>
       </motion.div>
 
@@ -63,7 +64,7 @@ const ContactRadio = () => {
         <div className="w-3 h-3 rounded-full bg-f1-green animate-pulse" />
         <div>
           <p className="font-display text-sm font-semibold text-f1-green">Available for Opportunities</p>
-          <p className="font-mono text-[9px] text-muted-foreground mt-0.5">Open to: Full-time · Contract · Freelance · Open Source Collaboration</p>
+          <p className="font-mono text-[9px] text-muted-foreground mt-0.5">Open to: Internships · Research Assistantships · Graduate Roles · Open Source · Academic Collaboration</p>
         </div>
       </motion.div>
 
