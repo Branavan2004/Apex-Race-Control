@@ -125,7 +125,7 @@ const HeroSection = () => {
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-8 h-px bg-primary" />
                     <span className="font-mono text-[10px] tracking-[0.4em] text-primary uppercase">
-                      Software Engineer · Portfolio
+                      Computer Science Undergraduate · Portfolio
                     </span>
                   </div>
                   <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-black text-foreground leading-[0.9] tracking-tight">
