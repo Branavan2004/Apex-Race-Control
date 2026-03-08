@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 
 const certifications = [
-  "AWS Cloud Practitioner",
-  "Meta Front-End Developer",
-  "Google UX Design",
+  "AWS Certified Cloud Practitioner",
+  "Meta Front-End Developer Professional Certificate",
+  "Google UX Design Professional Certificate",
+  "Stanford Machine Learning (Coursera — Andrew Ng)",
+  "IBM Data Science Professional Certificate",
 ];
 
 const DriverProfile = () => (
