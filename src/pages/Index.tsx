@@ -18,31 +18,32 @@ import DRSOverlay from "@/components/DRSOverlay";
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen bg-background">
-      {/* Background systems */}
+    <div className="relative min-h-screen bg-background grain">
       <SpeedBackground />
-
-      {/* Broadcast overlays */}
       <BroadcastTicker />
       <TimingTower />
       <DRSOverlay />
       <RadioPopup />
-
-      {/* HUD elements */}
       <RaceHUD />
       <TrackMap />
       <WeatherPanel />
       <ERSBar />
 
-      {/* Main content */}
       <div className="relative z-10">
         <HeroSection />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <DriverProfile />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <SkillsTelemetry />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <RaceHistory />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <PitWall />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <LiveTelemetry />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <ContactRadio />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <FinishLine />
       </div>
     </div>

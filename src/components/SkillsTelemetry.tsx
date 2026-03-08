@@ -1,18 +1,17 @@
 import { motion } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
-import SectorHeader from "./SectorHeader";
+import { useEffect, useRef } from "react";
 
 const skills = [
-  { name: "Programming", note: "Engine Power", value: 95, icon: "⚡" },
-  { name: "Web Development", note: "Aerodynamics", value: 90, icon: "🌊" },
-  { name: "Problem Solving", note: "Race Strategy", value: 92, icon: "🧠" },
-  { name: "Leadership", note: "Team Coordination", value: 88, icon: "🏁" },
-  { name: "Communication", note: "Radio Comms", value: 85, icon: "📡" },
+  { name: "React / TypeScript", category: "Frontend", value: 95, color: "hsl(var(--f1-blue))" },
+  { name: "Node.js / Express", category: "Backend", value: 90, color: "hsl(var(--f1-green))" },
+  { name: "Python / ML", category: "Data", value: 85, color: "hsl(var(--f1-purple))" },
+  { name: "System Design", category: "Architecture", value: 92, color: "hsl(var(--f1-gold))" },
+  { name: "DevOps / CI/CD", category: "Ops", value: 80, color: "hsl(var(--f1-cyan))" },
+  { name: "Problem Solving", category: "Core", value: 94, color: "hsl(var(--f1-red))" },
 ];
 
-const TelemetryGraph = () => {
+const WaveCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const dataRef = useRef<number[]>(Array(100).fill(30));
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -20,189 +19,129 @@ const TelemetryGraph = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    canvas.width = 600;
-    canvas.height = 120;
+    canvas.width = 800;
+    canvas.height = 80;
+    let frame = 0;
 
-    const animate = () => {
-      // Shift data and add new point
-      dataRef.current.shift();
-      dataRef.current.push(20 + Math.random() * 80);
+    const draw = () => {
+      ctx.clearRect(0, 0, 800, 80);
 
-      ctx.clearRect(0, 0, 600, 120);
-
-      // Grid
-      ctx.strokeStyle = "rgba(0, 200, 255, 0.05)";
-      ctx.lineWidth = 0.5;
-      for (let y = 0; y < 120; y += 20) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(600, y);
-        ctx.stroke();
-      }
-
-      // Throttle line
+      // Throttle wave
       ctx.beginPath();
-      ctx.strokeStyle = "rgba(0, 200, 255, 0.6)";
+      ctx.strokeStyle = "hsla(186, 100%, 50%, 0.4)";
       ctx.lineWidth = 1.5;
-      dataRef.current.forEach((v, i) => {
-        const x = (i / 100) * 600;
-        const y = 120 - (v / 100) * 110;
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      });
+      for (let x = 0; x < 800; x++) {
+        const y = 40 + Math.sin((x + frame) * 0.02) * 20 + Math.sin((x + frame * 1.5) * 0.05) * 10;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
       ctx.stroke();
 
-      // Fill under
-      ctx.lineTo(600, 120);
-      ctx.lineTo(0, 120);
-      ctx.closePath();
-      ctx.fillStyle = "rgba(0, 200, 255, 0.05)";
-      ctx.fill();
-
-      // Brake line (inverse)
+      // Brake wave
       ctx.beginPath();
-      ctx.strokeStyle = "rgba(225, 6, 0, 0.4)";
+      ctx.strokeStyle = "hsla(0, 85%, 52%, 0.3)";
       ctx.lineWidth = 1;
-      dataRef.current.forEach((v, i) => {
-        const x = (i / 100) * 600;
-        const y = (v / 100) * 110 + 5;
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      });
+      for (let x = 0; x < 800; x++) {
+        const y = 40 + Math.cos((x + frame * 0.8) * 0.03) * 15 + Math.sin((x - frame) * 0.04) * 8;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
       ctx.stroke();
 
-      requestAnimationFrame(animate);
+      frame++;
+      requestAnimationFrame(draw);
     };
-    const frame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frame);
+    const id = requestAnimationFrame(draw);
+    return () => cancelAnimationFrame(id);
   }, []);
 
-  return (
-    <div className="border border-border/30 bg-background/30 overflow-hidden relative mt-10">
-      <canvas ref={canvasRef} className="w-full h-28" style={{ imageRendering: "auto" }} />
-      <div className="absolute top-2 left-3 flex items-center gap-4">
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-0.5 bg-f1-cyan/60" />
-          <span className="font-body text-[8px] text-muted-foreground/30 tracking-wider uppercase">Throttle</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-0.5 bg-primary/40" />
-          <span className="font-body text-[8px] text-muted-foreground/30 tracking-wider uppercase">Brake</span>
-        </div>
-      </div>
-      <span className="absolute bottom-1 right-2 font-display text-[7px] text-muted-foreground/15 tracking-wider">
-        LIVE TRACE
-      </span>
-    </div>
-  );
-};
-
-const CircularGauge = ({ value, label, color, delay }: { value: number; label: string; color: string; delay: number }) => {
-  const circumference = 2 * Math.PI * 36;
-  const offset = circumference - (value / 100) * circumference;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.5 }}
-      className="flex flex-col items-center"
-    >
-      <div className="relative w-20 h-20">
-        <svg viewBox="0 0 80 80" className="w-full h-full -rotate-90">
-          <circle cx="40" cy="40" r="36" fill="none" stroke="hsl(0 0% 12%)" strokeWidth="3" />
-          <motion.circle
-            cx="40" cy="40" r="36"
-            fill="none"
-            stroke={color}
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            initial={{ strokeDashoffset: circumference }}
-            whileInView={{ strokeDashoffset: offset }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, delay: delay + 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-display text-sm font-bold text-foreground tabular-nums">{value}</span>
-        </div>
-      </div>
-      <span className="font-body text-[9px] text-muted-foreground/50 tracking-wider uppercase mt-2">{label}</span>
-    </motion.div>
-  );
+  return <canvas ref={canvasRef} className="w-full h-20 opacity-60" />;
 };
 
 const SkillsTelemetry = () => (
-  <section className="py-32 px-6 md:px-8 max-w-3xl mx-auto">
-    <SectorHeader
-      sector="Sector 2"
-      title="Performance Data"
-      subtitle="Skills mapped to car telemetry — because everything's better as a racing metaphor."
-    />
+  <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="mb-16"
+    >
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-8 h-px bg-secondary" />
+        <span className="font-mono text-[10px] tracking-[0.4em] text-secondary/70 uppercase">Sector 02</span>
+      </div>
+      <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">
+        Performance Data
+      </h2>
+      <p className="font-body text-muted-foreground mt-3 max-w-xl">
+        Skills mapped as car performance metrics. Higher values = more deployment time.
+      </p>
+    </motion.div>
 
-    {/* Circular gauges */}
-    <div className="flex flex-wrap justify-center gap-6 mb-12">
-      {skills.map((skill, i) => (
-        <CircularGauge
-          key={skill.name}
-          value={skill.value}
-          label={skill.note}
-          color={
-            skill.value >= 92
-              ? "hsl(145 100% 45%)"
-              : skill.value >= 88
-              ? "hsl(186 100% 50%)"
-              : "hsl(1 97% 44%)"
-          }
-          delay={i * 0.1}
-        />
-      ))}
-    </div>
-
-    {/* Bar telemetry */}
-    <div className="space-y-6">
+    {/* Skills grid */}
+    <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 mb-16">
       {skills.map((skill, i) => (
         <motion.div
           key={skill.name}
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: i * 0.08, duration: 0.5 }}
+          transition={{ delay: i * 0.06 }}
+          className="group"
         >
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2">
-              <span className="text-sm">{skill.icon}</span>
-              <span className="font-body text-foreground text-sm">{skill.name}</span>
-              <span className="font-body text-[10px] text-muted-foreground/30">{skill.note}</span>
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <span className="font-display text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                {skill.name}
+              </span>
+              <span className="font-mono text-[9px] text-muted-foreground ml-3 tracking-wider uppercase">
+                {skill.category}
+              </span>
             </div>
-            <span className="font-mono text-xs text-muted-foreground/50 tabular-nums">{skill.value}%</span>
+            <span className="font-mono text-sm font-semibold tabular-nums" style={{ color: skill.color }}>
+              {skill.value}
+            </span>
           </div>
-          <div className="h-2 bg-muted/30 overflow-hidden relative">
+          <div className="relative h-2 bg-muted rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: `${skill.value}%` }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: i * 0.08 + 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="h-full relative"
-              style={{
-                background: skill.value >= 92
-                  ? "linear-gradient(90deg, hsl(145 100% 45% / 0.7), hsl(145 100% 45%))"
-                  : skill.value >= 88
-                  ? "linear-gradient(90deg, hsl(186 100% 50% / 0.7), hsl(186 100% 50%))"
-                  : "linear-gradient(90deg, hsl(1 97% 44% / 0.7), hsl(1 97% 44%))",
-              }}
-            />
-            {/* Segment marks */}
-            {[25, 50, 75].map((p) => (
-              <div key={p} className="absolute top-0 h-full w-px bg-background/30" style={{ left: `${p}%` }} />
-            ))}
+              transition={{ duration: 1.2, delay: i * 0.06 + 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full rounded-full relative"
+              style={{ background: `linear-gradient(90deg, ${skill.color}66, ${skill.color})` }}
+            >
+              <div
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-4 rounded-full"
+                style={{ backgroundColor: skill.color }}
+              />
+            </motion.div>
           </div>
         </motion.div>
       ))}
     </div>
 
-    {/* Live telemetry graph */}
-    <TelemetryGraph />
+    {/* Live telemetry wave */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="bg-card border border-border p-4 rounded-lg overflow-hidden"
+    >
+      <div className="flex items-center gap-3 mb-3">
+        <div className="w-1.5 h-1.5 rounded-full bg-f1-green animate-pulse" />
+        <span className="font-mono text-[9px] tracking-[0.2em] text-muted-foreground uppercase">Live Telemetry Trace</span>
+        <div className="ml-auto flex gap-4">
+          <span className="flex items-center gap-1.5">
+            <div className="w-3 h-0.5 bg-f1-cyan/60 rounded" />
+            <span className="font-mono text-[8px] text-muted-foreground">Throttle</span>
+          </span>
+          <span className="flex items-center gap-1.5">
+            <div className="w-3 h-0.5 bg-primary/60 rounded" />
+            <span className="font-mono text-[8px] text-muted-foreground">Brake</span>
+          </span>
+        </div>
+      </div>
+      <WaveCanvas />
+    </motion.div>
   </section>
 );
 

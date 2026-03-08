@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,52 +6,53 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 95%;
+    --background: 220 15% 6%;
+    --foreground: 40 20% 95%;
 
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 95%;
+    --card: 220 15% 9%;
+    --card-foreground: 40 20% 95%;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 220 15% 9%;
+    --popover-foreground: 40 20% 95%;
 
-    --primary: 1 97% 44%;
+    --primary: 0 85% 52%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 186 100% 50%;
-    --secondary-foreground: 0 0% 4%;
+    --secondary: 40 90% 55%;
+    --secondary-foreground: 220 15% 6%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 220 12% 14%;
+    --muted-foreground: 220 10% 50%;
 
-    --accent: 220 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 40 90% 55%;
+    --accent-foreground: 220 15% 6%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 1 97% 44%;
+    --border: 220 12% 16%;
+    --input: 220 12% 16%;
+    --ring: 0 85% 52%;
 
-    --radius: 0.25rem;
+    --radius: 0.5rem;
 
-    --f1-red: 1 97% 44%;
+    --f1-red: 0 85% 52%;
+    --f1-gold: 40 90% 55%;
+    --f1-blue: 215 90% 55%;
+    --f1-yellow: 48 100% 55%;
+    --f1-purple: 270 80% 60%;
+    --f1-green: 155 80% 45%;
+    --f1-carbon: 220 15% 9%;
     --f1-cyan: 186 100% 50%;
-    --f1-blue: 220 100% 50%;
-    --f1-yellow: 48 100% 50%;
-    --f1-purple: 270 100% 60%;
-    --f1-green: 145 100% 45%;
-    --f1-carbon: 0 0% 7%;
 
-    --sidebar-background: 0 0% 6%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 1 97% 44%;
+    --sidebar-background: 220 15% 7%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 0 85% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 12%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 1 97% 44%;
+    --sidebar-accent: 220 12% 14%;
+    --sidebar-accent-foreground: 40 20% 95%;
+    --sidebar-border: 220 12% 16%;
+    --sidebar-ring: 0 85% 52%;
   }
 }
 
@@ -60,106 +61,56 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', sans-serif;
     overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Outfit', sans-serif;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Outfit', sans-serif;
   }
   .font-body {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
   }
   .font-mono-f1 {
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
   }
 }
 
-/* Carbon fiber texture */
-.carbon-fiber {
-  background-image:
-    radial-gradient(ellipse at center, hsl(0 0% 10%) 0%, hsl(0 0% 4%) 100%),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      hsl(0 0% 8% / 0.3) 2px,
-      hsl(0 0% 8% / 0.3) 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 2px,
-      hsl(0 0% 8% / 0.3) 2px,
-      hsl(0 0% 8% / 0.3) 4px
-    );
-}
-
-/* Glowing line effect */
-.glow-line {
-  box-shadow: 0 0 8px hsl(var(--f1-cyan) / 0.6), 0 0 20px hsl(var(--f1-cyan) / 0.3);
-}
-
-.glow-red {
-  box-shadow: 0 0 10px hsl(var(--f1-red) / 0.6), 0 0 30px hsl(var(--f1-red) / 0.3);
-}
-
-.text-glow-cyan {
-  text-shadow: 0 0 10px hsl(var(--f1-cyan) / 0.8), 0 0 30px hsl(var(--f1-cyan) / 0.4);
-}
-
-.text-glow-red {
-  text-shadow: 0 0 10px hsl(var(--f1-red) / 0.8), 0 0 30px hsl(var(--f1-red) / 0.4);
-}
-
-/* Telemetry grid */
-.telemetry-grid {
-  background-image:
-    linear-gradient(hsl(var(--f1-cyan) / 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--f1-cyan) / 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+/* Noise grain overlay */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 ::-webkit-scrollbar-track {
   background: hsl(var(--background));
 }
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--f1-red));
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
-/* Start light animation */
-@keyframes light-on {
-  0% { background: hsl(0 0% 15%); box-shadow: none; }
-  100% { background: hsl(0 80% 50%); box-shadow: 0 0 20px hsl(0 80% 50% / 0.8), 0 0 40px hsl(0 80% 50% / 0.4); }
+/* Selection */
+::selection {
+  background: hsl(var(--f1-red) / 0.3);
+  color: hsl(var(--foreground));
 }
 
-@keyframes light-green {
-  0% { background: hsl(0 80% 50%); }
-  100% { background: hsl(145 100% 45%); box-shadow: 0 0 30px hsl(145 100% 45% / 0.8), 0 0 60px hsl(145 100% 45% / 0.4); }
-}
-
-@keyframes speed-streak {
-  0% { transform: translateX(-100%); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateX(200vw); opacity: 0; }
-}
-
-.speed-streak {
-  animation: speed-streak 2s ease-in-out infinite;
-}
-
-/* Sector divider */
-.sector-divider {
-  height: 2px;
-  background: linear-gradient(90deg, transparent, hsl(var(--f1-cyan)), transparent);
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
 }

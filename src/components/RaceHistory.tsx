@@ -1,174 +1,141 @@
 import { motion } from "framer-motion";
-import SectorHeader from "./SectorHeader";
-
-const tireIcons: Record<string, { color: string; label: string }> = {
-  soft: { color: "bg-primary", label: "S" },
-  medium: { color: "bg-f1-yellow", label: "M" },
-  hard: { color: "bg-foreground", label: "H" },
-};
+import { ExternalLink } from "lucide-react";
 
 const projects = [
   {
     name: "Real-Time Analytics Dashboard",
-    tech: "React · TypeScript · Node.js",
-    description:
-      "Built a live data visualization platform that processes and displays metrics in real-time. Focused on performance optimization and clean component architecture.",
-    result: "P1",
-    tag: "Fastest Lap",
-    tagColor: "text-f1-purple bg-f1-purple/10",
-    tire: "soft",
-    gap: "+0.000",
-    laps: 58,
+    tech: ["React", "TypeScript", "Node.js"],
+    description: "Live data visualization platform with real-time metrics processing. Built for performance and clean architecture.",
+    position: "P1",
     points: 26,
+    fastestLap: true,
+    tire: "S",
+    tireColor: "bg-primary",
   },
   {
     name: "ML Prediction Pipeline",
-    tech: "Python · TensorFlow · Flask",
-    description:
-      "Designed a machine learning pipeline for predictive analysis. Automated the reporting flow and improved prediction accuracy through iterative model tuning.",
-    result: "P2",
-    tag: null,
-    tagColor: "",
-    tire: "medium",
-    gap: "+3.204",
-    laps: 58,
+    tech: ["Python", "TensorFlow", "Flask"],
+    description: "Predictive analysis pipeline with automated reporting. Improved accuracy through iterative model tuning.",
+    position: "P2",
     points: 18,
+    fastestLap: false,
+    tire: "M",
+    tireColor: "bg-f1-yellow",
   },
   {
     name: "Cross-Platform Mobile App",
-    tech: "React Native · Firebase",
-    description:
-      "Developed a mobile app with real-time sync, push notifications, and seamless auth. Shipped to both iOS and Android from a single codebase.",
-    result: "P1",
-    tag: "Fastest Lap",
-    tagColor: "text-f1-purple bg-f1-purple/10",
-    tire: "soft",
-    gap: "+0.000",
-    laps: 52,
+    tech: ["React Native", "Firebase"],
+    description: "Mobile app with real-time sync, push notifications, and seamless authentication. One codebase, both platforms.",
+    position: "P1",
     points: 26,
+    fastestLap: true,
+    tire: "S",
+    tireColor: "bg-primary",
   },
   {
-    name: "Microservices API",
-    tech: "Java · Spring Boot · PostgreSQL",
-    description:
-      "Architected a scalable REST API using microservices patterns. Set up CI/CD pipelines and wrote comprehensive integration tests.",
-    result: "P3",
-    tag: null,
-    tagColor: "",
-    tire: "hard",
-    gap: "+8.891",
-    laps: 58,
+    name: "Microservices Architecture",
+    tech: ["Java", "Spring Boot", "PostgreSQL"],
+    description: "Scalable REST API with microservices patterns. CI/CD pipelines and comprehensive integration testing.",
+    position: "P3",
     points: 15,
+    fastestLap: false,
+    tire: "H",
+    tireColor: "bg-foreground",
   },
 ];
 
 const RaceHistory = () => (
-  <section className="py-32 px-6 md:px-8 max-w-3xl mx-auto">
-    <SectorHeader
-      sector="Sector 3"
-      title="Race Results"
-      subtitle="Projects I've shipped. Each one taught me something the last one didn't."
-    />
-
-    {/* Championship standing header */}
+  <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto">
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="flex items-center gap-4 mb-8 pb-3 border-b border-border/30"
+      className="mb-16"
     >
-      <span className="font-display text-[9px] tracking-[0.2em] text-muted-foreground/30 uppercase w-8">Pos</span>
-      <span className="font-display text-[9px] tracking-[0.2em] text-muted-foreground/30 uppercase flex-1">Race</span>
-      <span className="font-display text-[9px] tracking-[0.2em] text-muted-foreground/30 uppercase w-10 text-center">Tire</span>
-      <span className="font-display text-[9px] tracking-[0.2em] text-muted-foreground/30 uppercase w-16 text-right">Gap</span>
-      <span className="font-display text-[9px] tracking-[0.2em] text-muted-foreground/30 uppercase w-10 text-right">Pts</span>
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-8 h-px bg-secondary" />
+        <span className="font-mono text-[10px] tracking-[0.4em] text-secondary/70 uppercase">Sector 03</span>
+      </div>
+      <div className="flex items-end justify-between">
+        <div>
+          <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">
+            Race Results
+          </h2>
+          <p className="font-body text-muted-foreground mt-3">
+            Projects I've shipped. Each lap faster than the last.
+          </p>
+        </div>
+        <div className="hidden md:block text-right">
+          <span className="font-display text-5xl font-black text-primary tabular-nums">
+            {projects.reduce((s, p) => s + p.points, 0)}
+          </span>
+          <p className="font-mono text-[9px] text-muted-foreground tracking-wider uppercase">Total Points</p>
+        </div>
+      </div>
     </motion.div>
 
-    <div className="space-y-1">
-      {projects.map((project, i) => {
-        const tire = tireIcons[project.tire];
-        return (
-          <motion.div
-            key={project.name}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            className="group"
-          >
-            {/* Race result row */}
-            <div className="flex items-center gap-4 py-3 px-2 hover:bg-muted/20 transition-colors cursor-pointer border-l-2 border-transparent hover:border-primary/60">
-              {/* Position */}
-              <span className={`font-display text-lg font-black w-8 tabular-nums ${
-                project.result === "P1" ? "text-f1-yellow" : project.result === "P2" ? "text-foreground/70" : "text-f1-yellow/40"
+    <div className="space-y-4">
+      {projects.map((project, i) => (
+        <motion.div
+          key={project.name}
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1, duration: 0.5 }}
+          className="group relative bg-card border border-border hover:border-primary/40 transition-all duration-300 overflow-hidden"
+        >
+          {/* Position color bar */}
+          <div className={`absolute left-0 top-0 bottom-0 w-1 ${
+            project.position === "P1" ? "bg-f1-gold" : project.position === "P2" ? "bg-muted-foreground" : "bg-f1-yellow/40"
+          }`} />
+
+          <div className="flex items-center gap-6 p-5 pl-6">
+            {/* Position */}
+            <div className="shrink-0 w-16 text-center">
+              <span className={`font-display text-3xl font-black ${
+                project.position === "P1" ? "text-f1-gold" : project.position === "P2" ? "text-foreground/60" : "text-f1-yellow/50"
               }`}>
-                {project.result}
-              </span>
-
-              {/* Race info */}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-display text-sm font-semibold text-foreground group-hover:text-f1-cyan transition-colors truncate">
-                    {project.name}
-                  </h3>
-                  {project.tag && (
-                    <span className={`font-display text-[8px] tracking-wider px-1.5 py-0.5 shrink-0 ${project.tagColor}`}>
-                      {project.tag}
-                    </span>
-                  )}
-                </div>
-                <p className="font-body text-[11px] text-muted-foreground/40 mt-0.5">{project.tech}</p>
-              </div>
-
-              {/* Tire */}
-              <div className="w-10 flex justify-center">
-                <div className={`w-5 h-5 rounded-full border-2 border-border/50 flex items-center justify-center ${tire.color}`}>
-                  <span className="font-display text-[7px] font-bold text-background">{tire.label}</span>
-                </div>
-              </div>
-
-              {/* Gap */}
-              <span className={`font-mono text-[11px] w-16 text-right tabular-nums ${
-                project.gap === "+0.000" ? "text-f1-green" : "text-muted-foreground/50"
-              }`}>
-                {project.gap}
-              </span>
-
-              {/* Points */}
-              <span className="font-display text-xs font-bold text-f1-cyan w-10 text-right tabular-nums">
-                {project.points}
+                {project.position}
               </span>
             </div>
 
-            {/* Expandable description */}
-            <div className="pl-14 pr-4 pb-3 hidden group-hover:block">
-              <p className="font-body text-sm text-muted-foreground/60 leading-relaxed">
-                {project.description}
-              </p>
-              <div className="flex items-center gap-4 mt-2">
-                <span className="font-body text-[10px] text-muted-foreground/30">{project.laps} laps completed</span>
-                <span className="font-body text-[10px] text-muted-foreground/30">Reliability: 100%</span>
+            {/* Info */}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-3">
+                <h3 className="font-display text-base font-bold text-foreground group-hover:text-primary transition-colors truncate">
+                  {project.name}
+                </h3>
+                {project.fastestLap && (
+                  <span className="shrink-0 font-mono text-[8px] tracking-wider bg-f1-purple/15 text-f1-purple px-2 py-0.5 rounded">
+                    FASTEST LAP
+                  </span>
+                )}
+                <ExternalLink className="w-3.5 h-3.5 text-muted-foreground/30 group-hover:text-primary/60 transition-colors shrink-0 ml-auto" />
+              </div>
+              <p className="font-body text-sm text-muted-foreground/60 mt-1 hidden md:block">{project.description}</p>
+              <div className="flex items-center gap-2 mt-2">
+                {project.tech.map((t) => (
+                  <span key={t} className="font-mono text-[9px] text-muted-foreground/50 bg-muted/50 px-2 py-0.5 rounded">
+                    {t}
+                  </span>
+                ))}
               </div>
             </div>
-          </motion.div>
-        );
-      })}
+
+            {/* Tire */}
+            <div className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center ${project.tireColor} border-2 border-background`}>
+              <span className="font-display text-[8px] font-bold text-background">{project.tire}</span>
+            </div>
+
+            {/* Points */}
+            <div className="shrink-0 w-12 text-right">
+              <span className="font-display text-lg font-black text-f1-cyan tabular-nums">{project.points}</span>
+              <p className="font-mono text-[7px] text-muted-foreground/40 tracking-wider uppercase">PTS</p>
+            </div>
+          </div>
+        </motion.div>
+      ))}
     </div>
-
-    {/* Championship points total */}
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      className="flex items-center justify-between mt-6 pt-4 border-t border-border/30"
-    >
-      <span className="font-display text-[10px] tracking-[0.2em] text-muted-foreground/40 uppercase">
-        Championship Points
-      </span>
-      <span className="font-display text-xl font-black text-f1-cyan tabular-nums">
-        {projects.reduce((sum, p) => sum + p.points, 0)}
-      </span>
-    </motion.div>
   </section>
 );
 

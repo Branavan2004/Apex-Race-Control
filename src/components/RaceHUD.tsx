@@ -1,101 +1,54 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const sections = [
-  { id: "S1", label: "Driver Profile" },
-  { id: "S2", label: "Performance" },
-  { id: "S3", label: "Race History" },
-  { id: "S4", label: "Pit Wall" },
-  { id: "S5", label: "Telemetry" },
-  { id: "PIT", label: "Contact" },
-];
+const sections = ["Profile", "Skills", "Projects", "Experience", "Telemetry", "Contact"];
 
 const RaceHUD = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [currentSector, setCurrentSector] = useState(0);
-  const [lapCount, setLapCount] = useState(1);
+  const [currentSection, setCurrentSection] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+      const top = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = total > 0 ? top / total : 0;
       setScrollProgress(progress);
-      const newSector = Math.min(Math.floor(progress * sections.length), sections.length - 1);
-      if (newSector < currentSector && currentSector === sections.length - 1) {
-        setLapCount((l) => l + 1);
-      }
-      setCurrentSector(newSector);
+      setCurrentSection(Math.min(Math.floor(progress * sections.length), sections.length - 1));
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentSector]);
+  }, []);
 
   return (
-    <motion.div
+    <motion.nav
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 7 }}
-      className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-end gap-4"
+      className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-end gap-3"
     >
-      {/* Lap counter */}
-      <div className="text-right mb-2">
-        <span className="font-body text-[7px] text-muted-foreground/20 tracking-wider uppercase block">Lap</span>
-        <span className="font-display text-lg font-bold text-foreground/50 tabular-nums">{lapCount}</span>
-      </div>
-
-      {/* Track progress line */}
-      <div className="relative w-px h-40 bg-border/20 rounded-full overflow-hidden">
-        <motion.div
-          className="absolute top-0 left-0 w-full bg-primary/60 rounded-full"
-          style={{ height: `${scrollProgress * 100}%` }}
-        />
-        {/* Section markers */}
-        {sections.map((_, i) => (
-          <div
-            key={i}
-            className="absolute left-1/2 -translate-x-1/2 w-2 h-px bg-border/40"
-            style={{ top: `${(i / sections.length) * 100}%` }}
-          />
-        ))}
-      </div>
-
-      {/* Sector indicators */}
-      <div className="flex flex-col gap-1.5">
-        {sections.map((s, i) => (
-          <div
-            key={s.id}
-            className="flex items-center gap-2 cursor-default group"
-            title={s.label}
-          >
-            {/* Label (shows on hover / active) */}
-            <span className={`font-body text-[8px] tracking-wider uppercase transition-all duration-300 ${
-              i === currentSector
-                ? "text-primary opacity-100"
-                : "text-muted-foreground/20 opacity-0 group-hover:opacity-100"
-            }`}>
-              {s.id}
-            </span>
-            <div
-              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                i === currentSector
-                  ? "bg-primary scale-150 shadow-[0_0_8px_hsl(1_97%_44%_/_0.6)]"
-                  : i < currentSector
-                  ? "bg-f1-green/50"
-                  : "bg-border/30"
-              }`}
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Speed indicator */}
-      <div className="text-right mt-2">
-        <span className="font-mono text-[9px] text-muted-foreground/20 tabular-nums">
-          {Math.round(scrollProgress * 350)} km/h
+      {sections.map((s, i) => (
+        <div key={s} className="flex items-center gap-2 group cursor-default">
+          <span className={`font-mono text-[9px] tracking-wider transition-all duration-300 ${
+            i === currentSection ? "text-primary opacity-100" : "text-muted-foreground/20 opacity-0 group-hover:opacity-100"
+          }`}>
+            {s}
+          </span>
+          <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            i === currentSection
+              ? "bg-primary scale-125"
+              : i < currentSection
+              ? "bg-f1-green/40"
+              : "bg-border/40"
+          }`} />
+        </div>
+      ))}
+      <div className="mt-4 text-right">
+        <div className="w-px h-12 bg-gradient-to-b from-primary/50 to-transparent ml-auto" />
+        <span className="font-mono text-[8px] text-muted-foreground/30 tabular-nums mt-1 block">
+          {Math.round(scrollProgress * 100)}%
         </span>
       </div>
-    </motion.div>
+    </motion.nav>
   );
 };
 

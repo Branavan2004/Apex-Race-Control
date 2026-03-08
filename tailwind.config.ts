@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Orbitron", "sans-serif"],
-        body: ["Rajdhani", "sans-serif"],
-        mono: ["Exo 2", "sans-serif"],
+        display: ["Outfit", "sans-serif"],
+        body: ["Space Grotesk", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -54,12 +54,13 @@ export default {
         },
         f1: {
           red: "hsl(var(--f1-red))",
-          cyan: "hsl(var(--f1-cyan))",
+          gold: "hsl(var(--f1-gold))",
           blue: "hsl(var(--f1-blue))",
           yellow: "hsl(var(--f1-yellow))",
           purple: "hsl(var(--f1-purple))",
           green: "hsl(var(--f1-green))",
           carbon: "hsl(var(--f1-carbon))",
+          cyan: "hsl(var(--f1-cyan))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -90,11 +91,16 @@ export default {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "1" },
         },
+        "marquee": {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "marquee": "marquee 30s linear infinite",
       },
     },
   },
