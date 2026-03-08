@@ -3,9 +3,9 @@ import { Mail, Linkedin, Github, ArrowUpRight, FileText } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 const channels = [
-  { label: "Email", icon: Mail, href: "mailto:branavan@example.com", desc: "Direct professional inquiries", freq: "107.3", detail: "Response within 24 hours" },
-  { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com", desc: "Professional network & endorsements", freq: "142.8", detail: "500+ connections" },
-  { label: "GitHub", icon: Github, href: "https://github.com", desc: "Open-source contributions & repositories", freq: "98.7", detail: "50+ repositories" },
+  { label: "Email", icon: Mail, href: "mailto:branavan@example.com", desc: "Academic & professional inquiries", freq: "107.3", detail: "Response within 24 hours · Preferred for formal communication" },
+  { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com", desc: "Professional network & academic connections", freq: "142.8", detail: "500+ connections · Endorsements & recommendations available" },
+  { label: "GitHub", icon: Github, href: "https://github.com", desc: "Source code, research implementations & OSS contributions", freq: "98.7", detail: "50+ repositories · Contribution graph & project documentation" },
 ];
 
 const RadioWave = () => {
