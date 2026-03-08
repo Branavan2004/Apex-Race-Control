@@ -24,7 +24,7 @@ import RaceDirectorBar from "@/components/RaceDirectorBar";
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen bg-background grain scanline">
+    <div className="relative min-h-screen bg-background grain vignette">
       <SpeedBackground />
       <CursorTrail />
       <FlagSystem />
