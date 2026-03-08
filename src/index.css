@@ -114,3 +114,54 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Carbon fiber texture for cards */
+.carbon-fiber {
+  background-image: 
+    linear-gradient(45deg, hsl(var(--card)) 25%, transparent 25%),
+    linear-gradient(-45deg, hsl(var(--card)) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, hsl(var(--muted)) 75%),
+    linear-gradient(-45deg, transparent 75%, hsl(var(--muted)) 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 0 2px, 2px -2px, -2px 0px;
+}
+
+/* Glow effects */
+.glow-primary {
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.15), 0 0 60px hsl(var(--primary) / 0.05);
+}
+
+.glow-green {
+  box-shadow: 0 0 12px hsl(var(--f1-green) / 0.2), 0 0 40px hsl(var(--f1-green) / 0.05);
+}
+
+/* Track kerb pattern */
+.kerb-pattern {
+  background: repeating-linear-gradient(
+    90deg,
+    hsl(var(--primary)) 0px,
+    hsl(var(--primary)) 8px,
+    hsl(var(--foreground)) 8px,
+    hsl(var(--foreground)) 16px
+  );
+  height: 3px;
+}
+
+/* Animated scan line */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scanline::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.08), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
