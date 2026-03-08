@@ -64,7 +64,7 @@ const ContactRadio = () => {
         <div className="w-3 h-3 rounded-full bg-f1-green animate-pulse" />
         <div>
           <p className="font-display text-sm font-semibold text-f1-green">Available for Opportunities</p>
-          <p className="font-mono text-[9px] text-muted-foreground mt-0.5">Open to: Full-time · Contract · Freelance · Open Source Collaboration</p>
+          <p className="font-mono text-[9px] text-muted-foreground mt-0.5">Open to: Internships · Research Assistantships · Graduate Roles · Open Source · Academic Collaboration</p>
         </div>
       </motion.div>
 

@@ -82,11 +82,13 @@ const DriverProfile = () => (
           >
             {[
               { label: "Location", value: "Colombo, Sri Lanka", icon: "📍" },
-              { label: "Education", value: "BSc (Hons) Software Engineering", icon: "🎓" },
-              { label: "Institution", value: "IIT · University of Westminster, UK", icon: "🏫" },
-              { label: "Specialization", value: "Full-Stack · Cloud · System Design", icon: "⚡" },
-              { label: "Status", value: "Actively Seeking Opportunities", icon: "🟢" },
-              { label: "Season", value: "2026 — Final Year", icon: "🏁" },
+              { label: "Degree", value: "BSc (Hons) Software Engineering — Final Year", icon: "🎓" },
+              { label: "Institution", value: "IIT Sri Lanka · University of Westminster, UK", icon: "🏫" },
+              { label: "GPA", value: "3.8+ / 4.0 — Dean's List (Multiple Semesters)", icon: "📊" },
+              { label: "Research Areas", value: "Distributed Systems · ML · Cloud · HCI", icon: "🔬" },
+              { label: "Languages", value: "Java, Python, TypeScript, C++, SQL, Rust", icon: "💻" },
+              { label: "Status", value: "Seeking Internships, Research & Graduate Roles", icon: "🟢" },
+              { label: "Expected Graduation", value: "June 2027", icon: "🎓" },
             ].map((item, i) => (
               <motion.div
                 key={item.label}

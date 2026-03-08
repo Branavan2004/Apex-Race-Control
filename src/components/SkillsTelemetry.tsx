@@ -102,11 +102,12 @@ const SkillsTelemetry = () => (
         <span className="font-mono text-[10px] tracking-[0.4em] text-secondary/70 uppercase">Sector 02</span>
       </div>
       <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">
-        Technical Proficiency
+        Technical Competencies
       </h2>
       <p className="font-body text-muted-foreground mt-3 max-w-2xl">
-        A comprehensive overview of my technical skill set, categorized by domain. 
-        Proficiency levels are based on project experience, depth of knowledge, and production usage.
+        A structured breakdown of technical skills acquired through academic coursework, independent study, 
+        research projects, and industry-standard certifications. Proficiency levels reflect depth of theoretical 
+        understanding, practical application in projects, and production-grade usage.
       </p>
     </motion.div>
 

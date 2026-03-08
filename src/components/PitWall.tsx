@@ -76,12 +76,12 @@ const PitWall = () => {
           <span className="font-mono text-[10px] tracking-[0.4em] text-secondary/70 uppercase">Sector 04</span>
         </div>
         <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">
-          Experience & Leadership
+          Leadership, Service & Academic Recognition
         </h2>
         <p className="font-body text-muted-foreground mt-3 max-w-2xl">
-          Beyond technical work, I actively contribute to community building, mentorship, 
-          and organizational leadership. These experiences have shaped my collaborative approach 
-          to engineering and problem-solving.
+          A record of leadership roles, community contributions, and academic distinctions that complement 
+          my technical development. These experiences have cultivated strong organisational, communication, 
+          and mentorship skills — essential for collaborative software engineering and research.
         </p>
       </motion.div>
 

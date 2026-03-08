@@ -62,10 +62,11 @@ const RaceHistory = () => {
         </div>
         <div className="flex items-end justify-between">
           <div>
-            <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">Project Portfolio</h2>
+            <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">Academic & Research Projects</h2>
             <p className="font-body text-muted-foreground mt-3 max-w-lg">
-              A selection of key projects demonstrating technical depth, architectural thinking, 
-              and end-to-end delivery. Click any project to view detailed specifications.
+              A curated selection of coursework, dissertation, and independent projects demonstrating 
+              rigorous application of computer science theory, software engineering methodology, 
+              and architectural decision-making. Click any project to view full technical specifications.
             </p>
           </div>
           <div className="hidden md:block text-right">

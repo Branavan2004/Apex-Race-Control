@@ -260,7 +260,7 @@ const HeroSection = () => {
                   className="flex items-center gap-3 pt-4 border-t border-border"
                 >
                   <div className="w-2 h-2 rounded-full bg-f1-green animate-pulse" />
-                  <span className="font-mono text-xs text-muted-foreground">Available for opportunities</span>
+                  <span className="font-mono text-xs text-muted-foreground">Open to internships, research assistantships & graduate roles</span>
                   <span className="font-mono text-sm text-f1-green ml-auto tabular-nums">
                     +{(counter * 0.05).toFixed(2)}s
                   </span>
