@@ -1,11 +1,11 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Mail, Linkedin, Github, ArrowUpRight, FileText } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 const channels = [
-  { label: "Email", icon: Mail, href: "mailto:branavan@example.com", desc: "Direct radio link", freq: "107.3" },
-  { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com", desc: "Team network", freq: "142.8" },
-  { label: "GitHub", icon: Github, href: "https://github.com", desc: "Code garage", freq: "98.7" },
+  { label: "Email", icon: Mail, href: "mailto:branavan@example.com", desc: "Direct professional inquiries", freq: "107.3", detail: "Response within 24 hours" },
+  { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com", desc: "Professional network & endorsements", freq: "142.8", detail: "500+ connections" },
+  { label: "GitHub", icon: Github, href: "https://github.com", desc: "Open-source contributions & repositories", freq: "98.7", detail: "50+ repositories" },
 ];
 
 const RadioWave = () => {
@@ -41,7 +41,6 @@ const RadioWave = () => {
 
 const ContactRadio = () => {
   const [hovered, setHovered] = useState<number | null>(null);
-  const [tuning, setTuning] = useState(false);
 
   return (
     <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto">
@@ -50,10 +49,22 @@ const ContactRadio = () => {
           <div className="w-8 h-px bg-secondary" />
           <span className="font-mono text-[10px] tracking-[0.4em] text-secondary/70 uppercase">Pit Lane</span>
         </div>
-        <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">Radio Comms</h2>
-        <p className="font-body text-muted-foreground mt-3 max-w-lg">
-          Open to opportunities, collaborations, or a good chat about engineering and race strategy.
+        <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">Get in Touch</h2>
+        <p className="font-body text-muted-foreground mt-3 max-w-2xl">
+          I am currently open to full-time positions, freelance engagements, and collaborative opportunities 
+          in software engineering. Whether you have a project in mind, a technical challenge to discuss, 
+          or simply want to connect — I'd be glad to hear from you.
         </p>
+      </motion.div>
+
+      {/* Availability status */}
+      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+        className="bg-f1-green/5 border border-f1-green/20 rounded-lg p-4 mb-8 flex items-center gap-4">
+        <div className="w-3 h-3 rounded-full bg-f1-green animate-pulse" />
+        <div>
+          <p className="font-display text-sm font-semibold text-f1-green">Available for Opportunities</p>
+          <p className="font-mono text-[9px] text-muted-foreground mt-0.5">Open to: Full-time · Contract · Freelance · Open Source Collaboration</p>
+        </div>
       </motion.div>
 
       {/* Radio wave visualization */}
@@ -61,7 +72,7 @@ const ContactRadio = () => {
         className="bg-card/50 border border-border/30 rounded-lg p-4 mb-8">
         <div className="flex items-center gap-2 mb-2">
           <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          <span className="font-mono text-[8px] tracking-[0.2em] text-muted-foreground/40 uppercase">Radio Frequency</span>
+          <span className="font-mono text-[8px] tracking-[0.2em] text-muted-foreground/40 uppercase">Communication Channel</span>
           <span className="font-mono text-[10px] text-primary/60 ml-auto tabular-nums">
             {hovered !== null ? channels[hovered].freq : "---.-"} MHz
           </span>
@@ -107,11 +118,26 @@ const ContactRadio = () => {
               <h3 className={`font-display text-xl font-bold transition-colors ${hovered === i ? "text-primary" : "text-foreground"}`}>
                 {ch.label}
               </h3>
-              <p className="font-mono text-xs text-muted-foreground mt-1">{ch.desc}</p>
+              <p className="font-body text-sm text-muted-foreground mt-1">{ch.desc}</p>
+              <p className="font-mono text-[9px] text-muted-foreground/40 mt-2">{ch.detail}</p>
             </div>
           </motion.a>
         ))}
       </div>
+
+      {/* Resume download hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="mt-8 text-center"
+      >
+        <div className="inline-flex items-center gap-2 bg-card border border-border px-5 py-3 rounded-lg hover:border-primary/30 transition-colors cursor-pointer">
+          <FileText className="w-4 h-4 text-muted-foreground" />
+          <span className="font-display text-sm font-semibold text-foreground">Download Resume</span>
+          <span className="font-mono text-[8px] text-muted-foreground/40">PDF · Updated March 2026</span>
+        </div>
+      </motion.div>
     </section>
   );
 };

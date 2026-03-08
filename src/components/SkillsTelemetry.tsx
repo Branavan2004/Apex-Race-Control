@@ -1,13 +1,34 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const skills = [
-  { name: "React / TypeScript", category: "Frontend", value: 95, color: "hsl(var(--f1-blue))" },
-  { name: "Node.js / Express", category: "Backend", value: 90, color: "hsl(var(--f1-green))" },
-  { name: "Python / ML", category: "Data", value: 85, color: "hsl(var(--f1-purple))" },
-  { name: "System Design", category: "Architecture", value: 92, color: "hsl(var(--f1-gold))" },
-  { name: "DevOps / CI/CD", category: "Ops", value: 80, color: "hsl(var(--f1-cyan))" },
-  { name: "Problem Solving", category: "Core", value: 94, color: "hsl(var(--f1-red))" },
+const skillCategories = [
+  {
+    category: "Frontend Engineering",
+    skills: [
+      { name: "React / Next.js", value: 95, color: "hsl(var(--f1-blue))", detail: "Production apps, SSR, state management" },
+      { name: "TypeScript", value: 93, color: "hsl(var(--f1-blue))", detail: "Strict typing, generics, advanced patterns" },
+      { name: "Tailwind CSS / SCSS", value: 90, color: "hsl(var(--f1-cyan))", detail: "Design systems, responsive layouts" },
+      { name: "Framer Motion", value: 85, color: "hsl(var(--f1-cyan))", detail: "Complex animations, gesture handling" },
+    ],
+  },
+  {
+    category: "Backend & Infrastructure",
+    skills: [
+      { name: "Node.js / Express", value: 90, color: "hsl(var(--f1-green))", detail: "REST APIs, middleware, authentication" },
+      { name: "Python / Django", value: 85, color: "hsl(var(--f1-green))", detail: "Data processing, ML pipelines, scripting" },
+      { name: "PostgreSQL / MongoDB", value: 88, color: "hsl(var(--f1-gold))", detail: "Schema design, queries, optimization" },
+      { name: "Docker / CI-CD", value: 80, color: "hsl(var(--f1-gold))", detail: "Containerization, GitHub Actions, pipelines" },
+    ],
+  },
+  {
+    category: "Architecture & Core",
+    skills: [
+      { name: "System Design", value: 92, color: "hsl(var(--f1-purple))", detail: "Microservices, event-driven, scalability" },
+      { name: "Data Structures & Algorithms", value: 90, color: "hsl(var(--f1-purple))", detail: "Competitive programming, optimization" },
+      { name: "Cloud Services (AWS/GCP)", value: 82, color: "hsl(var(--f1-red))", detail: "EC2, S3, Lambda, Cloud Functions" },
+      { name: "Testing & QA", value: 85, color: "hsl(var(--f1-red))", detail: "Jest, Cypress, integration & unit testing" },
+    ],
+  },
 ];
 
 const WaveCanvas = () => {
@@ -24,7 +45,6 @@ const WaveCanvas = () => {
 
     const draw = () => {
       ctx.clearRect(0, 0, 800, 80);
-      // Grid
       ctx.strokeStyle = "hsla(220, 12%, 20%, 0.3)";
       ctx.lineWidth = 0.3;
       for (let y = 0; y < 80; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(800, y); ctx.stroke(); }
@@ -57,51 +77,6 @@ const WaveCanvas = () => {
   return <canvas ref={canvasRef} className="w-full h-20 opacity-60" />;
 };
 
-const RadialGauge = ({ skill, index }: { skill: typeof skills[0]; index: number }) => {
-  const [hovered, setHovered] = useState(false);
-  const r = 38;
-  const circumference = 2 * Math.PI * r;
-  const offset = circumference - (skill.value / 100) * circumference;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.08 }}
-      className="flex flex-col items-center gap-2 group cursor-default"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <div className="relative w-24 h-24">
-        <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-          <circle cx="50" cy="50" r={r} fill="none" stroke="hsl(var(--muted))" strokeWidth="4" opacity="0.3" />
-          <motion.circle
-            cx="50" cy="50" r={r}
-            fill="none"
-            stroke={skill.color}
-            strokeWidth="4"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            initial={{ strokeDashoffset: circumference }}
-            whileInView={{ strokeDashoffset: offset }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, delay: index * 0.08 + 0.2, ease: [0.16, 1, 0.3, 1] }}
-            style={{ filter: hovered ? `drop-shadow(0 0 8px ${skill.color})` : "none" }}
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-display text-lg font-black tabular-nums" style={{ color: skill.color }}>
-            {skill.value}
-          </span>
-        </div>
-      </div>
-      <span className="font-display text-[11px] font-semibold text-foreground/80 text-center leading-tight">{skill.name}</span>
-      <span className="font-mono text-[8px] text-muted-foreground/40 tracking-wider uppercase">{skill.category}</span>
-    </motion.div>
-  );
-};
-
 const SkillsTelemetry = () => (
   <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto">
     <motion.div
@@ -115,48 +90,63 @@ const SkillsTelemetry = () => (
         <span className="font-mono text-[10px] tracking-[0.4em] text-secondary/70 uppercase">Sector 02</span>
       </div>
       <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">
-        Performance Data
+        Technical Proficiency
       </h2>
-      <p className="font-body text-muted-foreground mt-3 max-w-xl">
-        Skills mapped as car performance metrics. Higher values = more deployment time.
+      <p className="font-body text-muted-foreground mt-3 max-w-2xl">
+        A comprehensive overview of my technical skill set, categorized by domain. 
+        Proficiency levels are based on project experience, depth of knowledge, and production usage.
       </p>
     </motion.div>
 
-    {/* Radial gauges */}
-    <div className="grid grid-cols-3 md:grid-cols-6 gap-6 mb-12">
-      {skills.map((skill, i) => (
-        <RadialGauge key={skill.name} skill={skill} index={i} />
-      ))}
-    </div>
-
-    {/* Linear bars */}
-    <div className="grid md:grid-cols-2 gap-x-12 gap-y-6 mb-16">
-      {skills.map((skill, i) => (
+    {/* Skill categories */}
+    <div className="space-y-12 mb-16">
+      {skillCategories.map((cat, ci) => (
         <motion.div
-          key={skill.name + "-bar"}
-          initial={{ opacity: 0, y: 15 }}
+          key={cat.category}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: i * 0.06 }}
-          className="group"
+          transition={{ delay: ci * 0.1 }}
         >
-          <div className="flex items-center justify-between mb-2">
-            <span className="font-display text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-              {skill.name}
-            </span>
-            <span className="font-mono text-sm font-semibold tabular-nums" style={{ color: skill.color }}>
-              {skill.value}
-            </span>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: cat.skills[0].color }} />
+            <h3 className="font-display text-lg font-bold text-foreground">{cat.category}</h3>
+            <div className="flex-1 h-px bg-border/50" />
           </div>
-          <div className="relative h-1.5 bg-muted/30 rounded-full overflow-hidden">
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: `${skill.value}%` }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: i * 0.06 + 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="h-full rounded-full"
-              style={{ background: `linear-gradient(90deg, ${skill.color}44, ${skill.color})` }}
-            />
+
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-5">
+            {cat.skills.map((skill, i) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: ci * 0.1 + i * 0.06 }}
+                className="group"
+              >
+                <div className="flex items-center justify-between mb-1.5">
+                  <div>
+                    <span className="font-display text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {skill.name}
+                    </span>
+                    <p className="font-mono text-[8px] text-muted-foreground/40 mt-0.5">{skill.detail}</p>
+                  </div>
+                  <span className="font-mono text-sm font-semibold tabular-nums" style={{ color: skill.color }}>
+                    {skill.value}%
+                  </span>
+                </div>
+                <div className="relative h-2 bg-muted/30 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.value}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, delay: ci * 0.1 + i * 0.06 + 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="h-full rounded-full"
+                    style={{ background: `linear-gradient(90deg, ${skill.color}44, ${skill.color})` }}
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       ))}
@@ -171,10 +161,10 @@ const SkillsTelemetry = () => (
     >
       <div className="flex items-center gap-3 mb-3">
         <div className="w-1.5 h-1.5 rounded-full bg-f1-green animate-pulse" />
-        <span className="font-mono text-[9px] tracking-[0.2em] text-muted-foreground uppercase">Live Telemetry Trace</span>
+        <span className="font-mono text-[9px] tracking-[0.2em] text-muted-foreground uppercase">Live Performance Trace</span>
         <div className="ml-auto flex gap-4">
-          <span className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-f1-cyan/60 rounded" /><span className="font-mono text-[8px] text-muted-foreground">Throttle</span></span>
-          <span className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-primary/60 rounded" /><span className="font-mono text-[8px] text-muted-foreground">Brake</span></span>
+          <span className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-f1-cyan/60 rounded" /><span className="font-mono text-[8px] text-muted-foreground">Throughput</span></span>
+          <span className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-primary/60 rounded" /><span className="font-mono text-[8px] text-muted-foreground">Latency</span></span>
         </div>
       </div>
       <WaveCanvas />
