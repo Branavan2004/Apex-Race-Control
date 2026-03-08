@@ -19,10 +19,12 @@ import CursorTrail from "@/components/CursorTrail";
 import FlagSystem from "@/components/FlagSystem";
 import TyreDegradation from "@/components/TyreDegradation";
 import SteeringInput from "@/components/SteeringInput";
+import SectorDivider from "@/components/SectorDivider";
+import RaceDirectorBar from "@/components/RaceDirectorBar";
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen bg-background grain">
+    <div className="relative min-h-screen bg-background grain scanline">
       <SpeedBackground />
       <CursorTrail />
       <FlagSystem />
@@ -36,22 +38,23 @@ const Index = () => {
       <TyreDegradation />
       <ERSBar />
       <SteeringInput />
+      <RaceDirectorBar />
 
       <div className="relative z-10">
         <HeroSection />
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <SectorDivider sector={1} label="Driver Briefing" />
         <DriverProfile />
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <SectorDivider sector={2} label="Technical Telemetry" />
         <SkillsTelemetry />
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <SectorDivider sector={3} label="Race Classification" />
         <RaceHistory />
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <SectorDivider sector={4} label="Pit Wall" />
         <PitWall />
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <SectorDivider sector={5} label="Live Data Feed" />
         <LiveTelemetry />
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <SectorDivider sector={6} label="Team Radio" />
         <ContactRadio />
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <SectorDivider sector={7} label="Chequered Flag" />
         <FinishLine />
       </div>
     </div>
