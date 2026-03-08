@@ -8,18 +8,21 @@ interface SectorHeaderProps {
 
 const SectorHeader = ({ sector, title, subtitle }: SectorHeaderProps) => (
   <motion.div
-    initial={{ opacity: 0, x: -30 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
-    transition={{ duration: 0.6 }}
-    className="mb-12"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true, margin: "-80px" }}
+    transition={{ duration: 0.8 }}
+    className="mb-16"
   >
-    <div className="flex items-center gap-4 mb-3">
-      <span className="font-display text-xs tracking-[0.3em] text-f1-cyan uppercase">{sector}</span>
-      <div className="flex-1 h-px bg-gradient-to-r from-f1-cyan/40 to-transparent" />
-    </div>
-    <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground tracking-tight">{title}</h2>
-    {subtitle && <p className="font-body text-lg text-muted-foreground mt-2">{subtitle}</p>}
+    <span className="font-display text-[10px] tracking-[0.4em] text-primary/50 uppercase block mb-3">
+      {sector}
+    </span>
+    <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground tracking-tight mb-2">
+      {title}
+    </h2>
+    {subtitle && (
+      <p className="font-body text-base text-muted-foreground/60 max-w-lg">{subtitle}</p>
+    )}
   </motion.div>
 );
 

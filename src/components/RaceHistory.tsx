@@ -3,100 +3,80 @@ import SectorHeader from "./SectorHeader";
 
 const projects = [
   {
-    race: "Project Alpha",
-    circuit: "React · TypeScript · Node.js",
-    summary: "Full-stack web application for real-time data visualization and analytics dashboard.",
-    result: "P1 – Delivered on schedule",
-    tire: "Soft",
-    fastestLap: true,
-    laps: "56/56",
+    name: "Real-Time Analytics Dashboard",
+    tech: "React · TypeScript · Node.js",
+    description:
+      "Built a live data visualization platform that processes and displays metrics in real-time. Focused on performance optimization and clean component architecture.",
+    result: "P1",
+    tag: "Fastest Lap",
+    tagColor: "text-f1-purple bg-f1-purple/10",
   },
   {
-    race: "Project Beta",
-    circuit: "Python · TensorFlow · Flask",
-    summary: "Machine learning pipeline for predictive analysis with automated reporting.",
-    result: "P2 – High performance",
-    tire: "Medium",
-    fastestLap: false,
-    laps: "48/48",
+    name: "ML Prediction Pipeline",
+    tech: "Python · TensorFlow · Flask",
+    description:
+      "Designed a machine learning pipeline for predictive analysis. Automated the reporting flow and improved prediction accuracy through iterative model tuning.",
+    result: "P2",
+    tag: null,
+    tagColor: "",
   },
   {
-    race: "Project Gamma",
-    circuit: "React Native · Firebase",
-    summary: "Cross-platform mobile application with real-time notifications and user auth.",
-    result: "P1 – Top rated",
-    tire: "Hard",
-    fastestLap: true,
-    laps: "62/62",
+    name: "Cross-Platform Mobile App",
+    tech: "React Native · Firebase",
+    description:
+      "Developed a mobile app with real-time sync, push notifications, and seamless auth. Shipped to both iOS and Android from a single codebase.",
+    result: "P1",
+    tag: "Fastest Lap",
+    tagColor: "text-f1-purple bg-f1-purple/10",
   },
   {
-    race: "Project Delta",
-    circuit: "Java · Spring Boot · PostgreSQL",
-    summary: "Enterprise-grade REST API with microservices architecture and CI/CD pipeline.",
-    result: "P3 – Solid delivery",
-    tire: "Medium",
-    fastestLap: false,
-    laps: "44/44",
+    name: "Microservices API",
+    tech: "Java · Spring Boot · PostgreSQL",
+    description:
+      "Architected a scalable REST API using microservices patterns. Set up CI/CD pipelines and wrote comprehensive integration tests.",
+    result: "P3",
+    tag: null,
+    tagColor: "",
   },
 ];
 
-const tireColors: Record<string, { bg: string; ring: string }> = {
-  Soft: { bg: "bg-primary", ring: "ring-primary/30" },
-  Medium: { bg: "bg-f1-yellow", ring: "ring-f1-yellow/30" },
-  Hard: { bg: "bg-foreground", ring: "ring-foreground/30" },
-};
-
 const RaceHistory = () => (
-  <section className="relative py-24 px-4 md:px-8 max-w-5xl mx-auto">
-    <SectorHeader sector="Sector 3" title="RACE HISTORY" subtitle="Championship results and podium finishes" />
+  <section className="py-32 px-6 md:px-8 max-w-3xl mx-auto">
+    <SectorHeader
+      sector="Sector 3"
+      title="Race Results"
+      subtitle="Projects I've shipped. Each one taught me something the last one didn't."
+    />
 
-    <div className="grid md:grid-cols-2 gap-6">
+    <div className="space-y-6">
       {projects.map((project, i) => (
         <motion.div
-          key={project.race}
-          initial={{ opacity: 0, y: 30 }}
+          key={project.name}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: i * 0.1, duration: 0.5 }}
-          className="border border-border bg-card/60 backdrop-blur-md relative overflow-hidden group hover:border-primary/40 transition-all duration-300"
+          transition={{ delay: i * 0.08, duration: 0.5 }}
+          className="group border-l-2 border-border hover:border-primary/60 pl-6 py-4 transition-colors duration-300"
         >
-          {/* Top accent bar */}
-          <div className="h-0.5 bg-gradient-to-r from-primary via-f1-cyan to-transparent" />
-          
-          {/* Position stripe */}
-          <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
-
-          <div className="p-6 pl-5">
-            {/* Header row */}
-            <div className="flex items-start justify-between mb-3">
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="font-display text-xl font-bold text-foreground group-hover:text-f1-cyan transition-colors">{project.race}</span>
-                </div>
-                <p className="font-mono text-xs text-f1-cyan/70">{project.circuit}</p>
-              </div>
-              <div className="flex flex-col items-end gap-1">
-                {/* Tire compound */}
-                <div className="flex items-center gap-1.5">
-                  <div className={`w-4 h-4 rounded-full ${tireColors[project.tire].bg} ring-2 ${tireColors[project.tire].ring}`} />
-                  <span className="font-display text-[10px] text-muted-foreground">{project.tire}</span>
-                </div>
-                <span className="font-mono text-[10px] text-muted-foreground">LAPS {project.laps}</span>
-              </div>
+          <div className="flex items-start justify-between gap-4 mb-2">
+            <div>
+              <h3 className="font-display text-base font-semibold text-foreground group-hover:text-f1-cyan transition-colors duration-300">
+                {project.name}
+              </h3>
+              <p className="font-body text-xs text-muted-foreground/50 mt-0.5">{project.tech}</p>
             </div>
-
-            <p className="font-body text-sm text-muted-foreground mb-4 leading-relaxed">{project.summary}</p>
-
-            <div className="flex items-center justify-between pt-3 border-t border-border/50">
-              <span className="font-display text-xs text-f1-green">{project.result}</span>
-              {project.fastestLap && (
-                <div className="flex items-center gap-1.5 bg-f1-purple/10 border border-f1-purple/20 px-2 py-0.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-f1-purple" />
-                  <span className="font-display text-[10px] text-f1-purple">FASTEST LAP</span>
-                </div>
+            <div className="flex items-center gap-2 shrink-0">
+              {project.tag && (
+                <span className={`font-display text-[9px] tracking-wider px-2 py-0.5 ${project.tagColor}`}>
+                  {project.tag}
+                </span>
               )}
+              <span className="font-display text-xs font-bold text-f1-green">{project.result}</span>
             </div>
           </div>
+          <p className="font-body text-sm text-muted-foreground/70 leading-relaxed">
+            {project.description}
+          </p>
         </motion.div>
       ))}
     </div>
