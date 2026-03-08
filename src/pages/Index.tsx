@@ -15,11 +15,17 @@ import SpeedBackground from "@/components/SpeedBackground";
 import WeatherPanel from "@/components/WeatherPanel";
 import ERSBar from "@/components/ERSBar";
 import DRSOverlay from "@/components/DRSOverlay";
+import CursorTrail from "@/components/CursorTrail";
+import FlagSystem from "@/components/FlagSystem";
+import TyreDegradation from "@/components/TyreDegradation";
+import SteeringInput from "@/components/SteeringInput";
 
 const Index = () => {
   return (
     <div className="relative min-h-screen bg-background grain">
       <SpeedBackground />
+      <CursorTrail />
+      <FlagSystem />
       <BroadcastTicker />
       <TimingTower />
       <DRSOverlay />
@@ -27,7 +33,9 @@ const Index = () => {
       <RaceHUD />
       <TrackMap />
       <WeatherPanel />
+      <TyreDegradation />
       <ERSBar />
+      <SteeringInput />
 
       <div className="relative z-10">
         <HeroSection />
