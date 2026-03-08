@@ -3,11 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Volume2 } from "lucide-react";
 
 const radioMessages = [
-  { from: "Engineer", msg: "Good pace, Branavan. Keep pushing.", delay: 15000 },
-  { from: "Branavan", msg: "Copy. Tires feeling good.", delay: 35000 },
-  { from: "Engineer", msg: "DRS available. Use it wisely.", delay: 55000 },
-  { from: "Branavan", msg: "This portfolio is looking quick today.", delay: 80000 },
-  { from: "Engineer", msg: "Box box box. Fresh content incoming.", delay: 100000 },
+  { from: "Race Engineer", msg: "Branavan, good pace. P1 and pulling away. Keep it clean.", delay: 15000 },
+  { from: "BRA", msg: "Copy. Tyres feeling good, plenty of grip left.", delay: 35000 },
+  { from: "Race Engineer", msg: "DRS available in Zone 1. Deploy when ready.", delay: 55000 },
+  { from: "BRA", msg: "This portfolio is looking quick today. Feeling confident.", delay: 80000 },
+  { from: "Race Engineer", msg: "Box box box. New content set ready. Standby for pit entry.", delay: 100000 },
+  { from: "BRA", msg: "In, in, in. Good stop, let's go.", delay: 115000 },
+  { from: "Race Engineer", msg: "Great stop, 2.4 seconds. You're still P1. Push push push.", delay: 130000 },
+  { from: "Strategist", msg: "Gap to P2 is 4.3 seconds. You have the undercut advantage.", delay: 150000 },
+  { from: "BRA", msg: "Understood. Hammer time.", delay: 165000 },
+  { from: "Race Engineer", msg: "Chequered flag. P1 Branavan, P1! Incredible drive. Well done.", delay: 185000 },
 ];
 
 const RadioPopup = () => {
@@ -26,8 +31,8 @@ const RadioPopup = () => {
     let i = 0;
     const interval = setInterval(() => {
       if (i <= current.msg.length) { setTyped(current.msg.slice(0, i)); i++; }
-      else { clearInterval(interval); setTimeout(() => setCurrent(null), 3000); }
-    }, 25);
+      else { clearInterval(interval); setTimeout(() => setCurrent(null), 4000); }
+    }, 22);
     return () => clearInterval(interval);
   }, [current]);
 
@@ -44,6 +49,10 @@ const RadioPopup = () => {
             <div className="flex items-center gap-2 mb-2">
               <Volume2 className="w-3.5 h-3.5 text-primary animate-pulse" />
               <span className="font-mono text-[9px] tracking-[0.2em] text-primary uppercase">Team Radio</span>
+              <div className="ml-auto flex items-center gap-1">
+                <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
+                <span className="font-mono text-[7px] text-muted-foreground/30">LIVE</span>
+              </div>
             </div>
             <div className="flex gap-2">
               <span className="font-display text-[10px] text-secondary font-bold shrink-0">{current.from}:</span>

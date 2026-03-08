@@ -3,10 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import F1StartLights from "./F1StartLights";
 
 const stats = [
-  { label: "Academic Projects", value: "15+", detail: "Coursework, research & independent" },
-  { label: "Languages & Tools", value: "25+", detail: "Java, Python, TS, C++, SQL & more" },
-  { label: "Research Interests", value: "4", detail: "Distributed systems, ML, HCI, cloud" },
-  { label: "Cumulative GPA", value: "3.8+", detail: "Dean's List — multiple semesters" },
+  { label: "Grand Prix", value: "15+", detail: "Academic & independent projects" },
+  { label: "Constructors", value: "25+", detail: "Languages, frameworks & tools" },
+  { label: "Championships", value: "4", detail: "Research domains pursued" },
+  { label: "Driver Rating", value: "3.8+", detail: "Cumulative GPA — Dean's List" },
+];
+
+const sectorTimes = [
+  { sector: "S1", time: "28.442", status: "personal-best" },
+  { sector: "S2", time: "31.891", status: "session-best" },
+  { sector: "S3", time: "18.099", status: "overall-best" },
 ];
 
 const HeroSection = () => {
@@ -15,6 +21,7 @@ const HeroSection = () => {
   const [counter, setCounter] = useState(0);
   const [mouseSpeed, setMouseSpeed] = useState(0);
   const [gear, setGear] = useState(1);
+  const [lapNumber, setLapNumber] = useState(1);
   const lastMouse = useRef({ x: 0, y: 0, t: Date.now() });
 
   const handleLightsComplete = useCallback(() => {
@@ -26,6 +33,13 @@ const HeroSection = () => {
     if (!showContent) return;
     const interval = setInterval(() => setCounter((c) => c + 1), 50);
     return () => clearInterval(interval);
+  }, [showContent]);
+
+  // Lap counter
+  useEffect(() => {
+    if (!showContent) return;
+    const i = setInterval(() => setLapNumber((l) => l + 1), 15000);
+    return () => clearInterval(i);
   }, [showContent]);
 
   useEffect(() => {
@@ -90,7 +104,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               className="font-mono text-xs tracking-[0.5em] text-muted-foreground/40 uppercase"
             >
-              Formation Lap Complete
+              Formation Lap Complete · Grid Position P1
             </motion.p>
             <F1StartLights onComplete={handleLightsComplete} />
             <motion.p
@@ -99,7 +113,7 @@ const HeroSection = () => {
               transition={{ delay: 2 }}
               className="font-body text-sm text-muted-foreground/30"
             >
-              Lights out and away we go
+              It's lights out and away we go!
             </motion.p>
           </motion.div>
         )}
@@ -125,7 +139,7 @@ const HeroSection = () => {
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-8 h-px bg-primary" />
                     <span className="font-mono text-[10px] tracking-[0.4em] text-primary uppercase">
-                      Computer Science Undergraduate · Portfolio
+                      Computer Science Undergraduate · Race #01
                     </span>
                   </div>
                   <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-black text-foreground leading-[0.9] tracking-tight">
@@ -143,25 +157,51 @@ const HeroSection = () => {
                   >
                     Final-year BSc (Hons) Software Engineering undergraduate with a strong foundation 
                     in data structures, algorithms, object-oriented design, and distributed computing. 
-                    Passionate about building performant, maintainable systems grounded in sound 
-                    computer science principles.
+                    Engineering performant, maintainable systems with the precision of a Formula 1 pit wall.
                   </motion.p>
                 </motion.div>
 
+                {/* Team & number badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.7 }}
                   className="mt-8 flex items-center gap-6"
                 >
-                  <div className="w-12 h-12 border-2 border-primary flex items-center justify-center">
+                  <div className="w-12 h-12 border-2 border-primary flex items-center justify-center relative">
                     <span className="font-display text-xl font-black text-primary">01</span>
+                    <div className="absolute -top-px -left-px -right-px h-0.5 bg-gradient-to-r from-primary via-secondary to-primary" />
                   </div>
                   <div>
                     <p className="font-display text-sm font-semibold text-foreground">BSc (Hons) Software Engineering — Final Year</p>
-                    <p className="font-body text-xs text-muted-foreground">Informatics Institute of Technology · University of Westminster, UK</p>
-                    <p className="font-mono text-[8px] text-muted-foreground/40 mt-0.5">Modules: Algorithms, DBMS, Software Architecture, Machine Learning, Cloud Computing</p>
+                    <p className="font-body text-xs text-muted-foreground">IIT Sri Lanka · University of Westminster, UK</p>
+                    <p className="font-mono text-[8px] text-muted-foreground/40 mt-0.5">
+                      Modules: DSA, DBMS, OS, Networks, Software Architecture, ML, Cloud Computing
+                    </p>
                   </div>
+                </motion.div>
+
+                {/* Sector times */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.9 }}
+                  className="mt-6 flex items-center gap-4"
+                >
+                  {sectorTimes.map((s) => (
+                    <div key={s.sector} className="flex items-center gap-2">
+                      <span className="font-mono text-[8px] text-muted-foreground/40">{s.sector}</span>
+                      <span className={`font-mono text-xs font-bold tabular-nums ${
+                        s.status === "overall-best" ? "text-f1-purple" : s.status === "session-best" ? "text-f1-green" : "text-f1-yellow"
+                      }`}>
+                        {s.time}
+                      </span>
+                    </div>
+                  ))}
+                  <div className="h-3 w-px bg-border/30" />
+                  <span className="font-mono text-[8px] text-muted-foreground/30">
+                    LAP {lapNumber}/58
+                  </span>
                 </motion.div>
               </div>
 
@@ -203,11 +243,11 @@ const HeroSection = () => {
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span className="font-mono text-[8px] tracking-[0.3em] text-muted-foreground/40 uppercase">
-                      Interactive · Move cursor to rev
+                      Speed Trap · Move cursor to rev
                     </span>
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-f1-green animate-pulse" />
-                      <span className="font-mono text-[8px] text-f1-green">LIVE</span>
+                      <span className="font-mono text-[8px] text-f1-green">LIVE TELEMETRY</span>
                     </div>
                   </div>
                   <div className="flex items-end gap-6">
@@ -234,6 +274,7 @@ const HeroSection = () => {
                       ))}
                     </div>
                   </div>
+                  {/* Rev bar */}
                   <div className="flex gap-0.5 mt-3 h-2">
                     {Array.from({ length: 30 }).map((_, i) => {
                       const pct = (i / 30) * 100;
@@ -249,6 +290,23 @@ const HeroSection = () => {
                         />
                       );
                     })}
+                  </div>
+                  {/* Delta & gap */}
+                  <div className="flex items-center gap-4 mt-3 pt-2 border-t border-border/30">
+                    <div>
+                      <span className="font-mono text-[7px] text-muted-foreground/30 uppercase">Gap to P2</span>
+                      <span className="font-mono text-xs text-f1-green ml-2 tabular-nums">+1.432</span>
+                    </div>
+                    <div>
+                      <span className="font-mono text-[7px] text-muted-foreground/30 uppercase">Interval</span>
+                      <span className="font-mono text-xs text-foreground/50 ml-2 tabular-nums">—</span>
+                    </div>
+                    <div className="ml-auto">
+                      <span className="font-mono text-[7px] text-muted-foreground/30 uppercase">Tyre</span>
+                      <div className="inline-flex ml-2 w-4 h-4 rounded-full bg-primary items-center justify-center">
+                        <span className="font-display text-[6px] font-black text-primary-foreground">S</span>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
 
