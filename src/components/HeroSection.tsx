@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import F1StartLights from "./F1StartLights";
 
 const stats = [
-  { label: "Projects Delivered", value: "12+", detail: "Full-stack applications" },
-  { label: "Technologies", value: "20+", detail: "Languages & frameworks" },
-  { label: "Years Active", value: "3+", detail: "Professional development" },
-  { label: "Lines of Code", value: "50K+", detail: "Production-grade code" },
+  { label: "Academic Projects", value: "15+", detail: "Coursework, research & independent" },
+  { label: "Languages & Tools", value: "25+", detail: "Java, Python, TS, C++, SQL & more" },
+  { label: "Research Interests", value: "4", detail: "Distributed systems, ML, HCI, cloud" },
+  { label: "Cumulative GPA", value: "3.8+", detail: "Dean's List — multiple semesters" },
 ];
 
 const HeroSection = () => {
