@@ -158,8 +158,9 @@ const HeroSection = () => {
                     <span className="font-display text-xl font-black text-primary">01</span>
                   </div>
                   <div>
-                    <p className="font-display text-sm font-semibold text-foreground">BSc (Hons) Software Engineering</p>
-                    <p className="font-body text-xs text-muted-foreground">IIT Sri Lanka · Affiliated with University of Westminster, UK</p>
+                    <p className="font-display text-sm font-semibold text-foreground">BSc (Hons) Software Engineering — Final Year</p>
+                    <p className="font-body text-xs text-muted-foreground">Informatics Institute of Technology · University of Westminster, UK</p>
+                    <p className="font-mono text-[8px] text-muted-foreground/40 mt-0.5">Modules: Algorithms, DBMS, Software Architecture, Machine Learning, Cloud Computing</p>
                   </div>
                 </motion.div>
               </div>
