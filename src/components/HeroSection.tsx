@@ -141,9 +141,10 @@ const HeroSection = () => {
                     transition={{ delay: 0.5 }}
                     className="font-body text-base text-muted-foreground mt-6 max-w-md leading-relaxed"
                   >
-                    Full-stack software engineer specializing in scalable web applications, 
-                    system architecture, and high-performance user interfaces. Currently pursuing 
-                    a degree in Software Engineering at the Informatics Institute of Technology, Sri Lanka.
+                    Final-year BSc (Hons) Software Engineering undergraduate with a strong foundation 
+                    in data structures, algorithms, object-oriented design, and distributed computing. 
+                    Passionate about building performant, maintainable systems grounded in sound 
+                    computer science principles.
                   </motion.p>
                 </motion.div>
 
