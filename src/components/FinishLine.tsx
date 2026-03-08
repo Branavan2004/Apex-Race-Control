@@ -67,27 +67,33 @@ const FinishLine = () => {
 
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 1 }}>
         <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight mb-4">
-          Chequered Flag
+          Thank You for Visiting
         </h2>
-        <p className="font-body text-lg text-muted-foreground mb-4">
-          Thanks for completing the lap.
+        <p className="font-body text-lg text-muted-foreground mb-2 max-w-xl mx-auto">
+          I appreciate you taking the time to explore my portfolio. If my work and experience 
+          align with your needs, I would be delighted to discuss potential collaborations.
+        </p>
+        <p className="font-body text-base text-muted-foreground/60 mb-6 max-w-md mx-auto">
+          Every project is an opportunity to deliver excellence. Let's build something remarkable together.
         </p>
 
         {/* Session time */}
-        <div className="inline-flex items-center gap-3 bg-card border border-border px-6 py-3 rounded-lg mb-4">
+        <div className="inline-flex items-center gap-3 bg-card border border-border px-6 py-3 rounded-lg mb-6">
           <div className="w-2 h-2 rounded-full bg-f1-green" />
-          <span className="font-mono text-[9px] text-muted-foreground/50 tracking-wider uppercase">Session Time</span>
+          <span className="font-mono text-[9px] text-muted-foreground/50 tracking-wider uppercase">Session Duration</span>
           <span className="font-mono text-lg text-f1-green tabular-nums font-bold">{raceTime}</span>
         </div>
 
-        <p className="font-mono text-sm text-f1-green mt-2">Race Complete — Driver: Branavan</p>
-        <p className="font-mono text-xs text-muted-foreground/40 mt-1">Status: Ready for the next challenge.</p>
+        <div className="mt-2">
+          <p className="font-display text-sm font-semibold text-primary">Branavan</p>
+          <p className="font-mono text-xs text-muted-foreground/50 mt-1">Software Engineer · Full-Stack Developer · Problem Solver</p>
+        </div>
       </motion.div>
 
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1.3 }}
         className="mt-20 pt-8 border-t border-border/30">
         <p className="font-mono text-[10px] text-muted-foreground/30 tracking-wider">
-          © 2026 Branavan · Engineered with precision · Session #{Math.floor(Math.random() * 9999).toString().padStart(4, "0")}
+          © 2026 Branavan · Designed & engineered with precision · Built with React, TypeScript & Framer Motion
         </p>
       </motion.div>
     </section>
