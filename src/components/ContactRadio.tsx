@@ -51,9 +51,10 @@ const ContactRadio = () => {
         </div>
         <h2 className="font-display text-4xl md:text-5xl font-black text-foreground tracking-tight">Get in Touch</h2>
         <p className="font-body text-muted-foreground mt-3 max-w-2xl">
-          I am currently open to full-time positions, freelance engagements, and collaborative opportunities 
-          in software engineering. Whether you have a project in mind, a technical challenge to discuss, 
-          or simply want to connect — I'd be glad to hear from you.
+          I am actively seeking internship opportunities, research assistantships, and graduate-level positions 
+          in software engineering, distributed systems, and applied machine learning. I welcome inquiries from 
+          academic supervisors, industry recruiters, and fellow developers. Whether you wish to discuss a 
+          research collaboration, a technical project, or career opportunities — I would be pleased to connect.
         </p>
       </motion.div>
 
