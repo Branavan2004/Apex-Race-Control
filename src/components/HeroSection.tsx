@@ -9,19 +9,12 @@ const stats = [
   { label: "Driver Rating", value: "3.8+", detail: "Cumulative GPA — Dean's List" },
 ];
 
-const sectorTimes = [
-  { sector: "S1", time: "28.442", status: "personal-best" },
-  { sector: "S2", time: "31.891", status: "session-best" },
-  { sector: "S3", time: "18.099", status: "overall-best" },
-];
-
 const HeroSection = () => {
   const [raceStarted, setRaceStarted] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [counter, setCounter] = useState(0);
   const [mouseSpeed, setMouseSpeed] = useState(0);
   const [gear, setGear] = useState(1);
-  const [lapNumber, setLapNumber] = useState(1);
   const lastMouse = useRef({ x: 0, y: 0, t: Date.now() });
 
   const handleLightsComplete = useCallback(() => {
@@ -33,13 +26,6 @@ const HeroSection = () => {
     if (!showContent) return;
     const interval = setInterval(() => setCounter((c) => c + 1), 50);
     return () => clearInterval(interval);
-  }, [showContent]);
-
-  // Lap counter
-  useEffect(() => {
-    if (!showContent) return;
-    const i = setInterval(() => setLapNumber((l) => l + 1), 15000);
-    return () => clearInterval(i);
   }, [showContent]);
 
   useEffect(() => {
@@ -65,11 +51,11 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Giant background number */}
+      {/* Background number */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <motion.span
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: showContent ? 0.03 : 0, scale: 1 }}
+          animate={{ opacity: showContent ? 0.025 : 0, scale: 1 }}
           transition={{ duration: 2, delay: 0.5 }}
           className="font-display text-[40vw] font-black text-foreground leading-none"
         >
@@ -77,18 +63,12 @@ const HeroSection = () => {
         </motion.span>
       </div>
 
-      {/* Diagonal accent lines */}
+      {/* Accent lines */}
       <motion.div
         initial={{ scaleY: 0 }}
         animate={{ scaleY: showContent ? 1 : 0 }}
         transition={{ duration: 1.5, delay: 0.3 }}
-        className="absolute left-[15%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent origin-top hidden md:block"
-      />
-      <motion.div
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: showContent ? 1 : 0 }}
-        transition={{ duration: 1.5, delay: 0.6 }}
-        className="absolute right-[20%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-secondary/10 to-transparent origin-bottom hidden md:block"
+        className="absolute left-[15%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/15 to-transparent origin-top hidden md:block"
       />
 
       {/* Start lights */}
@@ -102,16 +82,16 @@ const HeroSection = () => {
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-mono text-xs tracking-[0.5em] text-muted-foreground/40 uppercase"
+              className="font-mono text-xs tracking-[0.5em] text-muted-foreground/30 uppercase"
             >
-              Formation Lap Complete · Grid Position P1
+              Formation Lap Complete
             </motion.p>
             <F1StartLights onComplete={handleLightsComplete} />
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 2 }}
-              className="font-body text-sm text-muted-foreground/30"
+              className="font-body text-sm text-muted-foreground/20"
             >
               It's lights out and away we go!
             </motion.p>
@@ -125,83 +105,55 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.2 }}
+            transition={{ duration: 1.5 }}
             className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12"
           >
-            <div className="grid md:grid-cols-[1fr,1fr] gap-8 md:gap-16 items-center">
-              {/* Left — big type */}
+            <div className="grid md:grid-cols-[1fr,1fr] gap-8 md:gap-20 items-center">
+              {/* Left */}
               <div>
                 <motion.div
                   initial={{ opacity: 0, x: -40 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                  transition={{ duration: 1, delay: 0.2 }}
                 >
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-px bg-primary" />
-                    <span className="font-mono text-[10px] tracking-[0.4em] text-primary uppercase">
-                      Computer Science Undergraduate · Race #01
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="w-8 h-px bg-primary/40" />
+                    <span className="font-mono text-[10px] tracking-[0.4em] text-primary/50 uppercase">
+                      Software Engineering · Portfolio
                     </span>
                   </div>
                   <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-black text-foreground leading-[0.9] tracking-tight">
                     BRA
                     <br />
-                    <span className="text-primary">NA</span>
+                    <span className="text-primary/85">NA</span>
                     <br />
                     VAN
                   </h1>
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="font-body text-base text-muted-foreground mt-6 max-w-md leading-relaxed"
+                    transition={{ delay: 0.6 }}
+                    className="font-body text-base text-muted-foreground/55 mt-8 max-w-md leading-relaxed"
                   >
                     Final-year BSc (Hons) Software Engineering undergraduate with a strong foundation 
-                    in data structures, algorithms, object-oriented design, and distributed computing. 
-                    Engineering performant, maintainable systems with the precision of a Formula 1 pit wall.
+                    in data structures, algorithms, and distributed computing. Building performant systems 
+                    with the precision of an F1 pit wall.
                   </motion.p>
                 </motion.div>
 
-                {/* Team & number badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.7 }}
-                  className="mt-8 flex items-center gap-6"
+                  transition={{ delay: 0.7, duration: 0.8 }}
+                  className="mt-10 flex items-center gap-5"
                 >
-                  <div className="w-12 h-12 border-2 border-primary flex items-center justify-center relative">
-                    <span className="font-display text-xl font-black text-primary">01</span>
-                    <div className="absolute -top-px -left-px -right-px h-0.5 bg-gradient-to-r from-primary via-secondary to-primary" />
+                  <div className="w-12 h-12 border border-primary/30 rounded-lg flex items-center justify-center">
+                    <span className="font-display text-lg font-black text-primary/70">01</span>
                   </div>
                   <div>
-                    <p className="font-display text-sm font-semibold text-foreground">BSc (Hons) Software Engineering — Final Year</p>
-                    <p className="font-body text-xs text-muted-foreground">IIT Sri Lanka · University of Westminster, UK</p>
-                    <p className="font-mono text-[8px] text-muted-foreground/40 mt-0.5">
-                      Modules: DSA, DBMS, OS, Networks, Software Architecture, ML, Cloud Computing
-                    </p>
+                    <p className="font-display text-sm font-semibold text-foreground/80">BSc (Hons) Software Engineering</p>
+                    <p className="font-body text-xs text-muted-foreground/40">IIT Sri Lanka · University of Westminster, UK</p>
                   </div>
-                </motion.div>
-
-                {/* Sector times */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.9 }}
-                  className="mt-6 flex items-center gap-4"
-                >
-                  {sectorTimes.map((s) => (
-                    <div key={s.sector} className="flex items-center gap-2">
-                      <span className="font-mono text-[8px] text-muted-foreground/40">{s.sector}</span>
-                      <span className={`font-mono text-xs font-bold tabular-nums ${
-                        s.status === "overall-best" ? "text-f1-purple" : s.status === "session-best" ? "text-f1-green" : "text-f1-yellow"
-                      }`}>
-                        {s.time}
-                      </span>
-                    </div>
-                  ))}
-                  <div className="h-3 w-px bg-border/30" />
-                  <span className="font-mono text-[8px] text-muted-foreground/30">
-                    LAP {lapNumber}/58
-                  </span>
                 </motion.div>
               </div>
 
@@ -209,14 +161,14 @@ const HeroSection = () => {
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
+                transition={{ delay: 0.5, duration: 1 }}
                 className="space-y-4"
               >
-                {/* Key stats grid */}
+                {/* Stats */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
+                  transition={{ delay: 0.9 }}
                   className="grid grid-cols-2 gap-3"
                 >
                   {stats.map((stat, i) => (
@@ -224,49 +176,49 @@ const HeroSection = () => {
                       key={stat.label}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.9 + i * 0.1 }}
-                      className="bg-card border border-border p-4 hover:border-primary/30 transition-colors"
+                      transition={{ delay: 1 + i * 0.1 }}
+                      className="glass rounded-lg p-4 hover:border-primary/15 transition-all duration-300"
                     >
-                      <span className="font-display text-2xl font-black text-primary tabular-nums">{stat.value}</span>
-                      <p className="font-display text-xs font-semibold text-foreground mt-1">{stat.label}</p>
-                      <p className="font-mono text-[8px] text-muted-foreground/50 mt-0.5">{stat.detail}</p>
+                      <span className="font-display text-2xl font-black text-primary/75 tabular-nums">{stat.value}</span>
+                      <p className="font-display text-xs font-semibold text-foreground/70 mt-1">{stat.label}</p>
+                      <p className="font-mono text-[8px] text-muted-foreground/35 mt-0.5">{stat.detail}</p>
                     </motion.div>
                   ))}
                 </motion.div>
 
-                {/* Speedometer driven by mouse */}
+                {/* Speedometer */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 1.3 }}
-                  className="bg-card border border-border p-4"
+                  transition={{ delay: 1.4 }}
+                  className="glass rounded-lg p-5"
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-[8px] tracking-[0.3em] text-muted-foreground/40 uppercase">
-                      Speed Trap · Move cursor to rev
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-mono text-[8px] tracking-[0.3em] text-muted-foreground/25 uppercase">
+                      Speed Trap · Move cursor
                     </span>
                     <div className="flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-f1-green animate-pulse" />
-                      <span className="font-mono text-[8px] text-f1-green">LIVE TELEMETRY</span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-f1-green/60 animate-pulse" />
+                      <span className="font-mono text-[8px] text-f1-green/50">LIVE</span>
                     </div>
                   </div>
                   <div className="flex items-end gap-6">
                     <div>
-                      <span className="font-display text-5xl font-black text-foreground tabular-nums">
+                      <span className="font-display text-5xl font-black text-foreground/80 tabular-nums">
                         {Math.round(mouseSpeed)}
                       </span>
-                      <span className="font-mono text-xs text-muted-foreground ml-1">km/h</span>
+                      <span className="font-mono text-xs text-muted-foreground/30 ml-1">km/h</span>
                     </div>
-                    <div className="flex items-center gap-1.5 pb-2">
+                    <div className="flex items-center gap-1 pb-2">
                       {[1, 2, 3, 4, 5, 6, 7].map((g) => (
                         <div
                           key={g}
-                          className={`w-5 h-7 rounded-sm flex items-center justify-center font-mono text-[10px] font-bold transition-all duration-100 ${
+                          className={`w-5 h-7 rounded flex items-center justify-center font-mono text-[10px] font-bold transition-all duration-150 ${
                             g === gear
-                              ? "bg-primary text-primary-foreground scale-110"
+                              ? "bg-primary/80 text-primary-foreground scale-110"
                               : g < gear
-                              ? "bg-muted/50 text-muted-foreground/30"
-                              : "bg-muted/20 text-muted-foreground/15"
+                              ? "bg-muted/40 text-muted-foreground/20"
+                              : "bg-muted/15 text-muted-foreground/10"
                           }`}
                         >
                           {g}
@@ -274,52 +226,34 @@ const HeroSection = () => {
                       ))}
                     </div>
                   </div>
-                  {/* Rev bar */}
-                  <div className="flex gap-0.5 mt-3 h-2">
+                  <div className="flex gap-0.5 mt-4 h-1.5">
                     {Array.from({ length: 30 }).map((_, i) => {
                       const pct = (i / 30) * 100;
                       const filled = (mouseSpeed / 350) * 100 > pct;
                       return (
                         <div
                           key={i}
-                          className={`flex-1 rounded-sm transition-all duration-75 ${
+                          className={`flex-1 rounded-full transition-all duration-100 ${
                             filled
-                              ? i >= 25 ? "bg-primary" : i >= 20 ? "bg-f1-yellow" : "bg-f1-green/70"
-                              : "bg-muted/20"
+                              ? i >= 25 ? "bg-primary/80" : i >= 20 ? "bg-f1-yellow/60" : "bg-f1-green/50"
+                              : "bg-muted/15"
                           }`}
                         />
                       );
                     })}
                   </div>
-                  {/* Delta & gap */}
-                  <div className="flex items-center gap-4 mt-3 pt-2 border-t border-border/30">
-                    <div>
-                      <span className="font-mono text-[7px] text-muted-foreground/30 uppercase">Gap to P2</span>
-                      <span className="font-mono text-xs text-f1-green ml-2 tabular-nums">+1.432</span>
-                    </div>
-                    <div>
-                      <span className="font-mono text-[7px] text-muted-foreground/30 uppercase">Interval</span>
-                      <span className="font-mono text-xs text-foreground/50 ml-2 tabular-nums">—</span>
-                    </div>
-                    <div className="ml-auto">
-                      <span className="font-mono text-[7px] text-muted-foreground/30 uppercase">Tyre</span>
-                      <div className="inline-flex ml-2 w-4 h-4 rounded-full bg-primary items-center justify-center">
-                        <span className="font-display text-[6px] font-black text-primary-foreground">S</span>
-                      </div>
-                    </div>
-                  </div>
                 </motion.div>
 
-                {/* Session status */}
+                {/* Status */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 1.5 }}
-                  className="flex items-center gap-3 pt-4 border-t border-border"
+                  transition={{ delay: 1.6 }}
+                  className="flex items-center gap-3 pt-4"
                 >
-                  <div className="w-2 h-2 rounded-full bg-f1-green animate-pulse" />
-                  <span className="font-mono text-xs text-muted-foreground">Open to internships, research assistantships & graduate roles</span>
-                  <span className="font-mono text-sm text-f1-green ml-auto tabular-nums">
+                  <div className="w-2 h-2 rounded-full bg-f1-green/50 animate-pulse" />
+                  <span className="font-mono text-xs text-muted-foreground/40">Open to internships, research & graduate roles</span>
+                  <span className="font-mono text-sm text-f1-green/50 ml-auto tabular-nums">
                     +{(counter * 0.05).toFixed(2)}s
                   </span>
                 </motion.div>
@@ -330,14 +264,14 @@ const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2 }}
-              className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+              transition={{ delay: 2.5 }}
+              className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
             >
-              <span className="font-mono text-[9px] text-muted-foreground/40 tracking-[0.4em] uppercase">Explore Portfolio</span>
+              <span className="font-mono text-[9px] text-muted-foreground/25 tracking-[0.4em] uppercase">Scroll</span>
               <motion.div
                 animate={{ y: [0, 8, 0] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-                className="w-px h-10 bg-gradient-to-b from-primary/50 to-transparent"
+                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                className="w-px h-10 bg-gradient-to-b from-primary/30 to-transparent"
               />
             </motion.div>
           </motion.div>
