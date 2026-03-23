@@ -1,73 +1,146 @@
-# Welcome to your Lovable project
+# Apex Race Control
 
-## Project info
+Apex Race Control is a Formula 1 inspired interactive portfolio and telemetry-style dashboard built with React, TypeScript, Vite, and Express. It transforms a traditional developer portfolio into an immersive race-broadcast experience, combining cinematic UI design, animated telemetry overlays, and structured backend-driven demo data.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Designed around the visual language of Formula 1 race coverage, the project presents profile information, technical skills, experience, featured work, and contact details through themed sectors, overlays, and broadcast components that create a memorable and distinctive user experience.
 
-## How can I edit this code?
+## Live Concept
 
-There are several ways of editing your application.
+Apex Race Control is more than a portfolio website. It is a frontend-heavy product experience that blends:
 
-**Use Lovable**
+- Personal branding
+- UI animation and interaction design
+- Data-driven dashboard patterns
+- API-backed telemetry simulation
+- Motorsport-inspired storytelling
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+The result is a polished showcase project that demonstrates both creative interface design and practical full-stack engineering structure.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## Key Features
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Immersive Portfolio Experience
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Formula 1 inspired hero section with animated race start lights
+- Dynamic speedometer and lap timer visuals
+- Scroll-aware race HUD that tracks active page sections
+- Sector-based storytelling structure for portfolio content
+- Broadcast-style overlays and race control interface elements
 
-Follow these steps:
+### Broadcast and Telemetry UI Components
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- Timing Tower
+- Track Map
+- DRS Overlay
+- ERS Bar
+- Race Director Bar
+- Weather Panel
+- Tyre Degradation Overlay
+- Steering Input Visualization
+- Broadcast Ticker
+- Race HUD navigation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Portfolio Sections
 
-# Step 3: Install the necessary dependencies.
-npm i
+- Driver Profile
+- Skills Telemetry
+- Race History
+- Pit Wall
+- Certifications Garage
+- Live Telemetry
+- Contact Radio
+- Finish Line
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### Backend and Data Support
 
-**Edit a file directly in GitHub**
+- Express REST API for race-related demo data
+- Mock/demo session support for stable local rendering
+- Endpoints for sessions, drivers, laps, positions, and telemetry
+- In-memory caching middleware for faster repeated requests
+- Health endpoint for deployment and runtime checks
+- Vercel-compatible serverless API wrapper support
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Tech Stack
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Frontend
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
+- React 18
 - TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Vite
+- Framer Motion
+- Recharts
+- Lucide React
+- Custom CSS architecture
 
-## How can I deploy this project?
+### Backend
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+- Node.js
+- Express
+- Nodemon
 
-## Can I connect a custom domain to my Lovable project?
+### Tooling
 
-Yes, you can!
+- npm
+- concurrently
+- TypeScript compiler
+- Vite build tooling
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Project Architecture
+
+The project is organized into three main layers:
+
+### `src/`
+Contains the primary frontend application, including:
+
+- visual overlays
+- portfolio content sections
+- reusable shared components
+- custom hooks
+- styling system
+- frontend utilities and API helpers
+
+### `server/`
+Contains the Express backend used in local development, including:
+
+- API routes
+- middleware
+- mock race data
+- telemetry/session services
+
+### `api/`
+Contains serverless wrappers used for deployment environments such as Vercel.
+
+This architecture allows the project to run smoothly in local development while remaining easy to deploy as a combined frontend and API application.
+
+---
+
+## Project Structure
+
+```text
+f1-react-dashboard-main/
+├── api/                     # Serverless API entry points
+├── public/                  # Static assets
+├── server/                  # Express backend
+│   ├── data/
+│   ├── middleware/
+│   ├── routes/
+│   └── services/
+├── src/
+│   ├── components/
+│   │   ├── overlays/
+│   │   ├── sections/
+│   │   ├── shared/
+│   │   └── UI/
+│   ├── data/
+│   ├── hooks/
+│   ├── lib/
+│   └── styles/
+├── index.html
+├── package.json
+├── vercel.json
+└── README.md
