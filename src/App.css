@@ -1,0 +1,135 @@
+.app-shell {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-areas:
+    'header header header'
+    'sidebar center right'
+    'sidebar chart right'
+    'footer footer footer';
+  grid-template-columns: 240px 1fr 300px;
+  grid-template-rows: 60px 1fr 240px 72px;
+  gap: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top right, rgba(225, 6, 0, 0.14), transparent 30%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent 35%),
+    var(--bg-base);
+}
+
+.app-status {
+  position: fixed;
+  top: 76px;
+  left: 50%;
+  z-index: 20;
+  width: min(640px, calc(100vw - 32px));
+  transform: translateX(-50%);
+}
+
+.panel {
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.app-header {
+  grid-area: header;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.app-sidebar {
+  grid-area: sidebar;
+  border-right: 1px solid var(--border-default);
+}
+
+.app-center {
+  grid-area: center;
+  border-right: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.app-chart {
+  grid-area: chart;
+  border-right: 1px solid var(--border-default);
+}
+
+.app-right {
+  grid-area: right;
+  display: grid;
+  grid-template-rows: 65% 35%;
+}
+
+.app-footer {
+  grid-area: footer;
+  border-top: 1px solid var(--border-default);
+}
+
+@media (max-width: 1180px) {
+  .app-shell {
+    height: auto;
+    min-height: 100vh;
+    width: 100%;
+    grid-template-areas:
+      'header header'
+      'sidebar sidebar'
+      'center right'
+      'chart right'
+      'footer footer';
+    grid-template-columns: minmax(0, 1fr) 320px;
+    grid-template-rows: 60px auto minmax(320px, 1fr) 260px auto;
+    overflow: auto;
+  }
+
+  .app-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .app-center,
+  .app-chart {
+    border-right: 1px solid var(--border-default);
+  }
+
+  .app-right {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 840px) {
+  .app-shell {
+    grid-template-areas:
+      'header'
+      'sidebar'
+      'center'
+      'chart'
+      'right'
+      'footer';
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .app-status {
+    position: sticky;
+    top: 0;
+    left: auto;
+    width: calc(100% - 24px);
+    margin: 12px;
+    transform: none;
+  }
+
+  .app-center,
+  .app-chart,
+  .app-sidebar {
+    border-right: 0;
+  }
+
+  .app-center,
+  .app-chart,
+  .app-right {
+    min-height: 320px;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .app-right {
+    grid-template-rows: minmax(280px, 1fr) auto;
+  }
+}

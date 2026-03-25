@@ -1,0 +1,102 @@
+.header {
+  height: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 0 var(--space-5);
+  background: var(--bg-secondary);
+}
+
+.header__brand,
+.header__race,
+.header__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.header__race {
+  justify-content: center;
+}
+
+.header__meta {
+  justify-content: flex-end;
+}
+
+.header__logo {
+  width: 92px;
+  height: 34px;
+}
+
+.header__title,
+.header__raceName,
+.header__round,
+.header__clock {
+  font-family: var(--font-display);
+}
+
+.header__title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.header__raceName {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+}
+
+.header__round {
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: var(--f1-red);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.header__clock {
+  color: var(--text-secondary);
+  font-size: 16px;
+  letter-spacing: 1.6px;
+}
+
+@media (max-width: 1180px) {
+  .header {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+
+  .header__race {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 840px) {
+  .header {
+    height: auto;
+    grid-template-columns: 1fr;
+    padding: 14px 16px;
+  }
+
+  .header__brand,
+  .header__race,
+  .header__meta {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .header__title {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  .header__raceName {
+    font-size: 18px;
+  }
+
+  .header__clock {
+    font-size: 14px;
+  }
+}

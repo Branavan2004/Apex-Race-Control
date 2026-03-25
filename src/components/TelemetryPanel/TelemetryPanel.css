@@ -1,0 +1,138 @@
+.telemetry {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: var(--bg-card);
+}
+
+.telemetry__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.telemetry__driver {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.telemetry__body {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+}
+
+.telemetry__gauge svg {
+  width: 100%;
+  height: auto;
+}
+
+.telemetry__needle {
+  stroke: #fff;
+  stroke-width: 3;
+  transition: transform 200ms ease;
+}
+
+.telemetry__speedValue {
+  fill: #fff;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.telemetry__speedLabel {
+  fill: var(--text-secondary);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.telemetry__right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.telemetry__bars {
+  display: flex;
+  gap: 12px;
+}
+
+.telemetry__barGroup {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+
+.telemetry__barShell {
+  width: 20px;
+  height: 80px;
+  display: flex;
+  align-items: end;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.telemetry__barFill {
+  width: 100%;
+  transition: height 100ms ease;
+}
+
+.telemetry__barValue,
+.telemetry__barLabel {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.telemetry__gear {
+  display: grid;
+  justify-items: center;
+}
+
+.telemetry__gearValue {
+  font-family: var(--font-display);
+  font-size: 80px;
+  line-height: 0.8;
+  font-weight: 800;
+}
+
+.telemetry__gearLabel {
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+}
+
+.telemetry__drs {
+  margin-top: 6px;
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.telemetry__drs--open {
+  background: rgba(0, 210, 190, 0.16);
+  color: var(--color-green);
+}
+
+@media (max-width: 840px) {
+  .telemetry__header {
+    gap: 8px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .telemetry__body {
+    grid-template-columns: 1fr;
+  }
+
+  .telemetry__right {
+    grid-template-columns: 1fr 1fr;
+  }
+}

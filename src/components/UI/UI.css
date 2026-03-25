@@ -1,0 +1,145 @@
+.ui-stateCard,
+.ui-errorBoundary {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  gap: var(--space-3);
+  text-align: center;
+  background: radial-gradient(circle at top, rgba(225, 6, 0, 0.2), transparent 35%), var(--bg-primary);
+}
+
+.ui-stateCard h2,
+.ui-errorBoundary h2 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  letter-spacing: 2px;
+}
+
+.ui-stateCard p,
+.ui-errorBoundary p {
+  color: var(--text-secondary);
+}
+
+.ui-stateCard--inline {
+  height: auto;
+  place-items: start;
+  gap: 6px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  background: rgba(10, 10, 18, 0.92);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.ui-stateCard--inline h2 {
+  font-size: 16px;
+  letter-spacing: 1.2px;
+}
+
+.ui-stateCard--inline p {
+  font-size: 13px;
+}
+
+.ui-stateCard--warning {
+  background:
+    linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(10, 10, 18, 0.94)),
+    rgba(10, 10, 18, 0.92);
+}
+
+.ui-stateCard--info {
+  background:
+    linear-gradient(135deg, rgba(0, 210, 190, 0.12), rgba(10, 10, 18, 0.94)),
+    rgba(10, 10, 18, 0.92);
+}
+
+.ui-demoBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  height: 26px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.24);
+  color: var(--color-yellow);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.ui-loadingShell {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 60px 1fr 72px;
+  gap: 0;
+  background: var(--bg-primary);
+}
+
+@media (max-width: 840px) {
+  .ui-loadingShell {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .ui-loadingBody {
+    grid-template-columns: 1fr;
+  }
+
+  .ui-loadingMain,
+  .ui-loadingRight {
+    grid-template-rows: auto;
+  }
+}
+
+.ui-loadingHeader,
+.ui-loadingFooter {
+  margin: 0;
+}
+
+.ui-loadingBody {
+  display: grid;
+  grid-template-columns: 240px 1fr 300px;
+}
+
+.ui-loadingSidebar,
+.ui-loadingTrack,
+.ui-loadingChart,
+.ui-loadingLeaderboard,
+.ui-loadingTelemetry {
+  margin: 12px;
+}
+
+.ui-loadingMain {
+  display: grid;
+  grid-template-rows: 1fr 240px;
+}
+
+.ui-loadingRight {
+  display: grid;
+  grid-template-rows: 65% 35%;
+}
+
+.ui-tooltipWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.ui-tooltipBubble {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-overlay);
+  border: 1px solid var(--border-default);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity var(--transition-normal);
+}
+
+.ui-tooltipWrap:hover .ui-tooltipBubble {
+  opacity: 1;
+}
